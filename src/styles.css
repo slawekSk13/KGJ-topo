@@ -1,0 +1,64 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+svg {
+  background-image: url("https://highlightsphoto.pl/images/Plik_002.jpeg");
+  background-size: cover;
+  width: 1200px;
+  max-width: 90%;
+  cursor: pointer;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+circle {
+  stroke-width: 3;
+  fill: none;
+}
+
+.hold {
+  stroke: #ff000070;
+  background-color: #ff0000cc;
+}
+.foot {
+  stroke: #f703ce70;
+  background-color: #f703cecc;
+}
+.start {
+  stroke: #0443f070;
+  background-color: #0443f0cc;
+}
+.top {
+  stroke: #05f12c70;
+  background-color: #05f12ccc;
+}
+
+.reset {
+  background-color: black;
+}
+
+button {
+  color: white;
+  margin: 1rem 0.3rem;
+  min-width: 3rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 10px 10px rgb(214, 214, 214);
+  cursor: pointer;
+}
+
+button:disabled {
+  box-shadow: none;
+  cursor: not-allowed;
+  color: black;
+}
