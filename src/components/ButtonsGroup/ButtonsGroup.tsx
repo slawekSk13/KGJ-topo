@@ -1,13 +1,13 @@
 import { Button } from "../Button/Button";
-import { ButtonType, ButtonsGroupProps } from "../../utilities/interfaces";
+import { IButtonType, IButtonsGroupProps } from "../../utilities/interfaces";
 import { ReactElement } from "react";
 
 export const ButtonsGroup = ({
   buttonsArray
-}: ButtonsGroupProps): ReactElement => {
+}: IButtonsGroupProps): ReactElement => {
   return (
     <div className="buttonsGroup">
-      {buttonsArray.map((buttonType: ButtonType) => {
+      {buttonsArray.map((buttonType: IButtonType) => {
         const { name, label } = buttonType;
         return <Button key={name} name={name} label={label} />;
       })}

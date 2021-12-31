@@ -1,30 +1,30 @@
-import { ButtonType, Const, HoldTypes } from "./interfaces";
+import { IButtonType, IConst, EHoldTypes } from "./interfaces";
 
-export const constants: Const = {
+export const constants: IConst = {
   sizeX: 400,
   sizeY: 300,
   radius: 10
 };
 
-export const buttonsArray: ButtonType[] = [
+export const buttonsArray: IButtonType[] = [
   {
-    name: HoldTypes.START,
+    name: EHoldTypes.START,
     label: "Start"
   },
   {
-    name: HoldTypes.HOLD,
+    name: EHoldTypes.HOLD,
     label: "Chwyt"
   },
   {
-    name: HoldTypes.TOP,
+    name: EHoldTypes.TOP,
     label: "Top"
   },
   {
-    name: HoldTypes.FOOT,
+    name: EHoldTypes.FOOT,
     label: "Stopień"
   },
   {
-    name: HoldTypes.RESET,
+    name: EHoldTypes.RESET,
     label: "Reset"
   }
 ];

@@ -1,25 +1,25 @@
 import { HoldState, Problem } from "../state";
 
-export interface Hold {
+export interface IHold {
   x: number;
   y: number;
-  holdType: HoldTypes;
+  holdType: EHoldTypes;
 }
 
-export interface Const {
+export interface IConst {
   sizeX: number;
   sizeY: number;
   radius: number;
 }
 
-export interface ElementSize {
+export interface IElementSize {
   top: number;
   left: number;
   width: number;
   height: number;
 }
 
-export enum HoldTypes {
+export enum EHoldTypes {
   HOLD = "hold",
   START = "start",
   TOP = "top",
@@ -27,18 +27,22 @@ export enum HoldTypes {
   RESET = "reset"
 }
 
-export interface ButtonType {
-  name: HoldTypes;
+export interface IButtonType {
+  name: EHoldTypes;
   label: string;
 }
 
-export interface ButtonsGroupProps {
-  buttonsArray: ButtonType[];
+export interface IButtonsGroupProps {
+  buttonsArray: IButtonType[];
 }
 
-export interface StateProps {
+export interface IHoldsMapProps {
   boulder: Problem;
-  currentHold: HoldState;
+  currentHold?: HoldState;
 }
 
-export type grade = 0 | 1 | 2 | 3 | 4 | 5;
+export interface IHoldProps {
+boulderHold: IHold;
+}
+
+export type EGrade = 0 | 1 | 2 | 3 | 4 | 5;

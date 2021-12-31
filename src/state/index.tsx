@@ -1,13 +1,13 @@
 import { makeAutoObservable } from "mobx";
-import { Hold, grade, HoldTypes } from "../utilities/interfaces";
+import { IHold, EGrade, EHoldTypes } from "../utilities/interfaces";
 
 export class HoldState {
-  private currentHold: HoldTypes;
+  currentHold: EHoldTypes;
   constructor() {
-    this.currentHold = HoldTypes.START;
+    this.currentHold = EHoldTypes.START;
     makeAutoObservable(this);
   }
-  setHold(hold: HoldTypes) {
+  setHold(hold: EHoldTypes) {
     this.currentHold = hold;
   }
   getHold() {
@@ -17,10 +17,10 @@ export class HoldState {
 
 export class Problem {
   id: number;
-  boulderHolds: Hold[];
+  boulderHolds: IHold[];
   name: string;
   author: string;
-  grade: grade;
+  grade: EGrade;
   constructor() {
     this.id = new Date().valueOf();
     this.boulderHolds = [];
@@ -40,8 +40,11 @@ export class Problem {
   setName(name: string) {
     this.name = name;
   }
-  setHolds(holds: Hold[]) {
+  setHolds(holds: IHold[]) {
     this.boulderHolds = holds;
+  }
+  getHolds() {
+    return this.boulderHolds;
   }
 }
 
