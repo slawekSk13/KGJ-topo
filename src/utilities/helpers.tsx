@@ -1,8 +1,8 @@
 import { EHoldTypes, IHold, IConst, IElementSize } from "./interfaces";
 import { constants } from "./constants";
 
-export const queryTargetParameters = (): IElementSize => {
-  const target: HTMLElement | null = document.getElementById("target");
+export const queryElementParameters = (elementId: string): IElementSize => {
+  const target: HTMLElement | null = document.getElementById(elementId);
   const rect: DOMRect | undefined = target?.getBoundingClientRect();
   return {
     top: rect?.top || 100,
@@ -17,7 +17,7 @@ export const generateNewHold = (
   constants: { sizeX: number; sizeY: number },
   holdType: EHoldTypes
 ): IHold => {
-  const { top, left, width, height }: IElementSize = queryTargetParameters();
+  const { top, left, width, height }: IElementSize = queryElementParameters('holdsMap');
   const x = ((e.clientX - left) / width) * constants.sizeX;
   const y = ((e.clientY - top) / height) * constants.sizeY;
   return { x, y, holdType };

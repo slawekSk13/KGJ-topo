@@ -2,27 +2,178 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  --fontColorMenu: rgb(107, 107, 107);
+  --backgroundColor: rgb(238, 238, 238);
+  --shadowColor: rgb(167, 167, 167);
+  --menuBackgroundColor: rgb(238, 238, 238, 0.9);
+  --activeLinkBackgroundColor: thistle;
 }
 
-svg {
-  background-image: url("https://highlightsphoto.pl/images/Plik_002.jpeg");
-  background-size: cover;
-  width: 1200px;
-  max-width: 90%;
-  cursor: pointer;
+body {
+  background-color: var(--backgroundColor);
 }
 
-#root {
+.main {
+  color: var(--fontColorMenu);
+  background-color: var(--backgroundColor);
+  margin: 0 auto;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  max-width: 100%;
+  width: 1200px;
+  box-shadow: 0 0 30px var(--shadowColor);
+}
+
+.boulder-name {
+  text-transform: uppercase;
+  margin: 1rem 0;
+  color: var(--fontColorMenu)
+}
+
+.boulder-name-input {
+  border: none;
+  background-color: transparent;
+  font-size: 2rem;
+  text-align: center;
+  outline-color: var(--fontColorMenu);
+}
+
+.boulder-author {
+  font-size: 1.5rem;
+  margin: 0 0 1rem;
+}
+
+.menu {
+  color: var(--fontColorMenu);
+  background-color: transparent;
+  width: 320px;
+  max-width: 100%;
+  position: absolute;
+  left: -270px;
+  z-index: 30;
+  min-height: 100vh;
+  transition: 1s;
+  display: flex;
+  justify-content: center;
+  padding: 5rem 0;
+  overflow: hidden;
+}
+
+.menu__active {
+  left: 0;
+  box-shadow: 0 0 30px var(--shadowColor);
+  background-color: var(--menuBackgroundColor);
+}
+
+.menu__active .link__active {
+  background-color: var(--activeLinkBackgroundColor);
+}
+
+.menu__active .link {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.menu-background {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  opacity: 0;
+  z-index: 10;
+}
+
+.hamburger {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: var(--fontColorMenu);
+  cursor: pointer;
+}
+
+.menu-list {
+  list-style: none;
   width: 100%;
 }
+
+.menu-list li {
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+.link {
+  color: var(--fontColorMenu);
+  display: inline-block;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 2rem;
+  width: 100%;
+  transition: transform 0.3s;
+  opacity: 0;
+  cursor:initial;
+}
+
+.tooltip {
+  position: relative;
+}
+
+.tooltip-text {
+  padding: 0.5rem 1rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: calc(-200px - 10px);
+  visibility: hidden;
+  opacity: 0;
+  width: 200px;
+  background-color: var(--activeLinkBackgroundColor);
+  color: var(--fontColorMenu);
+  text-align: center;
+  z-index: 2;
+}
+
+.tooltip-text:after {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent var(--activeLinkBackgroundColor) transparent
+    transparent;
+  transition-duration: 1s;
+}
+
+.menu__active .tooltip:hover .link__not-active + .tooltip-text {
+  opacity: 1;
+  visibility: visible;
+}
+
+.holds-map {
+  background-image: url("https://highlightsphoto.pl/images/Plik_002.jpeg");
+  background-size: cover;
+  width: 98%;
+  cursor: pointer;
+  box-shadow: 0 20px 20px var(--shadowColor);
+  margin-bottom: 2rem;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
 circle {
   stroke-width: 3;
   fill: none;
+}
+
+.circuit-number {
+  fill: none;
+  stroke-width: 2;
 }
 
 .hold {
@@ -46,6 +197,10 @@ circle {
   background-color: black;
 }
 
+.save {
+  background-color: gold;
+}
+
 button {
   color: white;
   margin: 1rem 0.3rem;
@@ -53,8 +208,9 @@ button {
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 10px;
-  box-shadow: 0 10px 10px rgb(214, 214, 214);
+  box-shadow: 0 10px 10px var(--shadowColor);
   cursor: pointer;
+  transition: 1s;
 }
 
 button:disabled {

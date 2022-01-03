@@ -1,15 +1,21 @@
-import { buttonsArray } from "./utilities/constants";
 
-import { boulder, currentHold } from "./state";
+import { Menu } from "./components/Menu/Menu";
 
-import { ButtonsGroup } from "./components/ButtonsGroup/ButtonsGroup";
-import { HoldsMap } from "./components/HoldsMap/HoldsMap";
+import { Old } from "./views/Old";
+
+import { HashRouter, Route, Routes, Navigate } from "react-router-dom";
+import { Home } from "./views/Home";
 
 export const App = () => {
-    return (
-      <>
-        <ButtonsGroup buttonsArray={buttonsArray} />
-        <HoldsMap boulder={boulder} currentHold={currentHold}/>
-      </>
-    );
-  }
+  return (
+    <HashRouter>
+      <Menu />
+      <main className="main" id='main'>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/old" element={<Old />} />
+        </Routes>
+      </main>
+    </HashRouter>
+  );
+};

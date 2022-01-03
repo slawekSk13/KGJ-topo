@@ -1,5 +1,10 @@
 import { makeAutoObservable } from "mobx";
-import { IHold, EGrade, EHoldTypes } from "../utilities/interfaces";
+import {
+  IHold,
+  EGrade,
+  EHoldTypes,
+  EProblemType,
+} from "../utilities/interfaces";
 
 export class HoldState {
   currentHold: EHoldTypes;
@@ -21,12 +26,14 @@ export class Problem {
   name: string;
   author: string;
   grade: EGrade;
+  type: EProblemType;
   constructor() {
     this.id = new Date().valueOf();
     this.boulderHolds = [];
     this.name = "";
     this.author = "";
     this.grade = 0;
+    this.type = EProblemType.BOULDER;
     makeAutoObservable(this);
   }
   upgrade() {
@@ -46,7 +53,19 @@ export class Problem {
   getHolds() {
     return this.boulderHolds;
   }
+  setType(type: EProblemType) {
+    this.type = type;
+  }
+  getType() {
+    return this.type;
+  }
+  setId() {
+    this.id = new Date().valueOf();
+  }
+  getId() {
+    return this.id;
+  }
 }
 
-export const boulder = new Problem();
+export let boulder = new Problem();
 export const currentHold = new HoldState();

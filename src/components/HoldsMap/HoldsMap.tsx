@@ -1,27 +1,18 @@
-import { ReactElement } from "react";
 import { observer } from "mobx-react-lite";
-import { IHoldsMapProps, IHold } from "../../utilities/interfaces";
-import { handleNewHold } from "../../utilities/helpers";
-
 import { constants } from "../../utilities/constants";
+import { EProblemType, IHold, IHoldsMapProps } from "../../utilities/interfaces";
 import { Hold } from "../Hold/Hold";
-export const HoldsMap = observer(
-  ({ boulder, currentHold }: IHoldsMapProps): ReactElement => {
-    const handleMapClick = (e: { clientX: number; clientY: number }) => {
-      currentHold && boulder.setHolds(
-        handleNewHold(e, boulder.getHolds(), currentHold.getHold())
-      );
-    };
+
+export const HoldsMap = observer(({boulder, handleMapClick} : IHoldsMapProps) => {
     return (
-      <svg
-        viewBox={`0 0 ${constants.sizeX} ${constants.sizeY}`}
-        onClick={handleMapClick}
-        id="target"
-      >
-        {boulder.getHolds().map((boulderHold: IHold, i: number) => (
-          <Hold key={i} boulderHold={boulderHold} />
-        ))}
-      </svg>
-    );
-  }
-);
+        <svg className='holds-map'
+          viewBox={`0 0 ${constants.sizeX} ${constants.sizeY}`}
+          onClick={handleMapClick}
+          id="holdsMap"
+        >
+          {boulder.boulderHolds.map((boulderHold: IHold, i: number ) => (
+            <Hold key={i} boulderHold={boulderHold} index={boulder.type === EProblemType.CIRCUIT && i + 1}/>
+          ))}
+        </svg>
+      );
+})

@@ -1,3 +1,4 @@
+import { MouseEventHandler } from "react";
 import { HoldState, Problem } from "../state";
 
 export interface IHold {
@@ -24,7 +25,8 @@ export enum EHoldTypes {
   START = "start",
   TOP = "top",
   FOOT = "foot",
-  RESET = "reset"
+  RESET = "reset",
+  SAVE = "save",
 }
 
 export interface IButtonType {
@@ -38,11 +40,22 @@ export interface IButtonsGroupProps {
 
 export interface IHoldsMapProps {
   boulder: Problem;
+  handleMapClick?: MouseEventHandler;
+}
+
+export interface IStateProps {
+  boulder: Problem;
   currentHold?: HoldState;
 }
 
 export interface IHoldProps {
-boulderHold: IHold;
+  boulderHold: IHold;
+  index: number | false;
 }
 
 export type EGrade = 0 | 1 | 2 | 3 | 4 | 5;
+
+export enum EProblemType {
+  BOULDER = "boulder",
+  CIRCUIT = "circuit",
+}

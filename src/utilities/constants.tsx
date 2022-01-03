@@ -26,5 +26,9 @@ export const buttonsArray: IButtonType[] = [
   {
     name: EHoldTypes.RESET,
     label: "Reset"
+  },
+  {
+    name: EHoldTypes.SAVE,
+    label: "Zapisz"
   }
 ];
