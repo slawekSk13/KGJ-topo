@@ -11,6 +11,7 @@
 
 body {
   background-color: var(--backgroundColor);
+  overflow-x: hidden;
 }
 
 .main {
@@ -22,7 +23,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  max-width: 100%;
+  max-width: 100vw;
   width: 1200px;
   box-shadow: 0 0 30px var(--shadowColor);
 }
@@ -30,7 +31,7 @@ body {
 .boulder-name {
   text-transform: uppercase;
   margin: 1rem 0;
-  color: var(--fontColorMenu)
+  color: var(--fontColorMenu);
 }
 
 .boulder-name-input {
@@ -59,7 +60,6 @@ body {
   display: flex;
   justify-content: center;
   padding: 5rem 0;
-  overflow: hidden;
 }
 
 .menu__active {
@@ -113,7 +113,7 @@ body {
   width: 100%;
   transition: transform 0.3s;
   opacity: 0;
-  cursor:initial;
+  cursor: initial;
 }
 
 .tooltip {
@@ -126,13 +126,16 @@ body {
   top: 50%;
   transform: translateY(-50%);
   right: calc(-200px - 10px);
-  visibility: hidden;
-  opacity: 0;
+  /* opacity: 0; */
   width: 200px;
   background-color: var(--activeLinkBackgroundColor);
   color: var(--fontColorMenu);
   text-align: center;
-  z-index: 2;
+  z-index: 40;
+}
+
+.menu .tooltip-text {
+  opacity: 0;
 }
 
 .tooltip-text:after {
@@ -150,7 +153,6 @@ body {
 
 .menu__active .tooltip:hover .link__not-active + .tooltip-text {
   opacity: 1;
-  visibility: visible;
 }
 
 .holds-map {
@@ -169,11 +171,6 @@ body {
 circle {
   stroke-width: 3;
   fill: none;
-}
-
-.circuit-number {
-  fill: none;
-  stroke-width: 2;
 }
 
 .hold {
@@ -199,6 +196,14 @@ circle {
 
 .save {
   background-color: gold;
+}
+
+.circuit-number {
+  fill: none;
+  stroke-width: 1;
+  font-size: 1rem;
+  fill: #000000aa;
+  stroke: #ffffffaa;
 }
 
 button {

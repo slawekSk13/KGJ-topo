@@ -20,7 +20,10 @@ export const AddNewBoulder =
       }
       return (
         <>
-        <input onChange={handleChange} className={'boulder-name boulder-name-input clickable'} value={boulder.name} placeholder='Podaj nazwę' />
+        <div className='tooltip'>
+        <input onChange={handleChange} className={'boulder-name boulder-name-input clickable'} value={boulder.getName()} placeholder='Podaj nazwę' />
+        {boulder.getName() === '' && <span className='tooltip-text'>Nazwiesz to jakoś?</span>}
+        </div>
        <HoldsMap boulder={boulder} handleMapClick={handleMapClick} />
        </>
       );

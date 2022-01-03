@@ -33,7 +33,7 @@ export class Problem {
     this.name = "";
     this.author = "";
     this.grade = 0;
-    this.type = EProblemType.BOULDER;
+    this.type = EProblemType.CIRCUIT;
     makeAutoObservable(this);
   }
   upgrade() {
@@ -46,6 +46,9 @@ export class Problem {
   }
   setName(name: string) {
     this.name = name;
+  }
+  getName() {
+    return this.name;
   }
   setHolds(holds: IHold[]) {
     this.boulderHolds = holds;

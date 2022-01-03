@@ -11,7 +11,8 @@ export const Hold = ({ boulderHold, index }: IHoldProps): ReactElement => {
           className={`${holdType} circuit-number`}
           x={x}
           y={y}
-          dx={index < 10 ? "-20" : "-28"}
+          textAnchor='middle'
+          dy={'5'}
         >
           {index}
         </text>
