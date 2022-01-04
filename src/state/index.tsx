@@ -70,5 +70,29 @@ export class Problem {
   }
 }
 
-export let boulder = new Problem();
+export class AppError {
+code: string[];
+constructor () {
+  this.code = [];
+  makeAutoObservable(this);
+}
+setCode(code: string) {
+  this.code = [...this.code, code];
+}
+removeCode(code:string) {
+  this.code = this.code.filter(el => el !== code);
+}
+clearCode() {
+  this.code = [];
+}
+checkCode(code: string) {
+  return this.code.includes(code);
+}
+getCode() {
+  return this.code
+}
+}
+
+export const boulder = new Problem();
 export const currentHold = new HoldState();
+export const appError = new AppError();

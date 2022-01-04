@@ -3,7 +3,7 @@ import { Menu } from "./components/Menu/Menu";
 
 import { Old } from "./views/Old";
 
-import { HashRouter, Route, Routes, Navigate } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./views/Home";
 
 export const App = () => {

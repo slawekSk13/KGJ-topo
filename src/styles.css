@@ -9,9 +9,17 @@
   --activeLinkBackgroundColor: thistle;
 }
 
+html {
+  max-width: 100%;
+  /* background-color: red; */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  background-color: var(--backgroundColor);
   overflow-x: hidden;
+  background-color: var(--backgroundColor);
 }
 
 .main {
@@ -40,6 +48,9 @@ body {
   font-size: 2rem;
   text-align: center;
   outline-color: var(--fontColorMenu);
+  border-bottom: 1px solid var(--fontColorMenu);
+  max-width: 310px;
+  margin-top: 3rem;
 }
 
 .boulder-author {
@@ -78,10 +89,11 @@ body {
 }
 
 .menu-background {
+  /* background-color: chartreuse; */
   position: absolute;
   width: 100%;
   height: 100vh;
-  opacity: 0;
+  opacity: 0.5;
   z-index: 10;
 }
 
@@ -96,6 +108,10 @@ body {
 .menu-list {
   list-style: none;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-height: 80vh;
 }
 
 .menu-list li {
@@ -123,10 +139,6 @@ body {
 .tooltip-text {
   padding: 0.5rem 1rem;
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: calc(-200px - 10px);
-  /* opacity: 0; */
   width: 200px;
   background-color: var(--activeLinkBackgroundColor);
   color: var(--fontColorMenu);
@@ -134,25 +146,64 @@ body {
   z-index: 40;
 }
 
+.tooltip-text__right {
+  top: 50%;
+  transform: translateY(-50%);
+  right: calc(-200px - 10px);
+}
+
+.tooltip-text__bottom {
+  top: 100%;
+  transform: translate(50%, -20%);
+  right: 50%;
+}
+
+.tooltip-text__top {
+  top: -50%;
+  transform: translate(50%, 50%);
+  right: 50%;
+}
+
 .menu .tooltip-text {
   opacity: 0;
+  display: none;
 }
 
 .tooltip-text:after {
   content: "";
   position: absolute;
+  border-width: 10px;
+  border-style: solid;
+  transition-duration: 1s;
+}
+
+.tooltip-text__right:after {
   right: 100%;
   top: 50%;
   transform: translateY(-50%);
-  border-width: 10px;
-  border-style: solid;
   border-color: transparent var(--activeLinkBackgroundColor) transparent
     transparent;
-  transition-duration: 1s;
+}
+
+.tooltip-text__bottom:after {
+  right: 50%;
+  bottom: 98%;
+  transform: translateX(50%);
+  border-color:  transparent transparent var(--activeLinkBackgroundColor) 
+    transparent;
+}
+
+.tooltip-text__top:after {
+  right: 50%;
+  top: 100%;
+  transform: translateX(50%);
+  border-color:  var(--activeLinkBackgroundColor) transparent transparent 
+    transparent;
 }
 
 .menu__active .tooltip:hover .link__not-active + .tooltip-text {
   opacity: 1;
+  display: inline-block;
 }
 
 .holds-map {
@@ -161,7 +212,7 @@ body {
   width: 98%;
   cursor: pointer;
   box-shadow: 0 20px 20px var(--shadowColor);
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
 }
 
 .clickable {
@@ -222,4 +273,9 @@ button:disabled {
   box-shadow: none;
   cursor: not-allowed;
   color: black;
+}
+
+.buttons-group {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }

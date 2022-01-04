@@ -1,5 +1,5 @@
 import { MouseEventHandler } from "react";
-import { HoldState, Problem } from "../state";
+import { HoldState, Problem, AppError } from "../state";
 
 export interface IHold {
   x: number;
@@ -46,6 +46,7 @@ export interface IHoldsMapProps {
 export interface IStateProps {
   boulder: Problem;
   currentHold?: HoldState;
+  appError: AppError;
 }
 
 export interface IHoldProps {

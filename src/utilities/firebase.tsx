@@ -7,9 +7,9 @@ initializeApp(firebaseConfig);
 const db = getDatabase();
 // const auth = getAuth();
 
-const handleUserError = (err: any) => {
-  const errorToReturn = {code: err.code, error: true}
-    return errorToReturn;
+const handleError = (err: any) => {
+  const errorToReturn = { code: err.code, error: true };
+  return errorToReturn;
 };
 
 // const handleRegister = async (email, password) => {
@@ -67,30 +67,23 @@ const handleUserError = (err: any) => {
 
 export const postToFirebase = async (dataToSave: Problem) => {
   try {
-    await set(
-      ref(db, `boulders/${dataToSave.id}`),
-      dataToSave
-    );
+    await set(ref(db, `boulders/${dataToSave.id}`), dataToSave);
     return true;
   } catch (err) {
-    return handleUserError(err);
+    return handleError(err);
   }
 };
 
 export const getFromFirebase = async () => {
   try {
     const dataRef = ref(db);
-    return get(child(dataRef, `boulders`)).then(
-      (snapshot) => {
-        if (snapshot) {
-          const data = snapshot.val();
-          return Object.values<Problem>(data);
-        } else return [];
-      }
-    );
+    return get(child(dataRef, `boulders`)).then((snapshot) => {
+      if (snapshot) {
+        const data = snapshot.val();
+        return Object.values<Problem>(data);
+      } else return [];
+    });
   } catch (err) {
     return []; // join error with useState in Old
   }
 };
-
-
