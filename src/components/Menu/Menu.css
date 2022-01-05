@@ -71,7 +71,7 @@
     display: none;
   }
 
-  .menu__active .tooltip:hover .link__not-active + .tooltip-text {
+  .menu__active .link__not-active:hover + .tooltip-text {
     opacity: 1;
     display: inline-block;
   }

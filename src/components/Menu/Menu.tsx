@@ -33,21 +33,21 @@ export const Menu = () => {
         <ul className="menu-list">
           <li>
             <ul>
-              <li onClick={handleClick} className="tooltip">
+              <li onClick={handleClick}>
                 <CustomLink to="/">Nowy</CustomLink>
                 <TooltipText
                   className="tooltip-text__right"
                   text="Masz coś nowego?"
                 />
               </li>
-              <li onClick={handleClick} className="tooltip">
+              <li onClick={handleClick}>
                 <CustomLink to="/old">Przeglądaj</CustomLink>
                 <TooltipText
                   className="tooltip-text__right"
                   text="Sprawdź, czy jest coś nowego"
                 />
               </li>
-              <li onClick={handleClick} className="tooltip">
+              <li onClick={handleClick}>
                 <CustomLink to="/stats">Statystyki</CustomLink>
                 <TooltipText
                   className="tooltip-text__right"
@@ -56,7 +56,7 @@ export const Menu = () => {
               </li>
             </ul>
           </li>
-          <li onClick={handleClick} className="tooltip">
+          <li onClick={handleClick}>
             <CustomLink to="/login">Zaloguj</CustomLink>
             <TooltipText
               className="tooltip-text__right"

@@ -1,5 +1,5 @@
 .buttons-group {
-    margin: 1rem;
+    margin: 1rem .2rem;
     display: flex;
     max-width: 100%;
     flex-wrap: wrap;
