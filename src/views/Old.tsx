@@ -1,18 +1,24 @@
 import { getFromFirebase } from "../utilities/firebase";
 import { HoldsMap } from "../components/HoldsMap/HoldsMap";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Problem } from "../state";
+import { observer } from "mobx-react-lite";
+import { StateContext } from "../state/context";
+import { OldHeader } from "../components/OldHeader/OldHeader";
 
-export const Old = () => {
+export const Old = observer(() => {
   const [boulders, setBoulders] = useState<Problem[]>([new Problem()]);
   const [count, setCount] = useState(0);
 
+  const { appError } = useContext(StateContext);
+
   const loadData = async () => {
-    const oldBoulders = await getFromFirebase();
-    setBoulders(oldBoulders);
+    const { code, data, error } = await getFromFirebase();
+    setBoulders(data);
+    error && appError.setCode(code);
   };
 
-  const handleCountIncrease = () => {
+  const handleCountIncrease = (): void => {
     setCount((prev) => {
       if (prev < boulders.length - 1) {
         return prev + 1;
@@ -20,7 +26,7 @@ export const Old = () => {
     });
   };
 
-  const handleCountDecrease = () => {
+  const handleCountDecrease = (): void => {
     setCount((prev) => {
       if (prev > 1) {
         return prev - 1;
@@ -33,13 +39,12 @@ export const Old = () => {
   }, []);
   return (
     <>
-      <h1 className='boulder-name'>
-        <span className='clickable' onClick={handleCountDecrease}>{"<<"} </span>
-        {`${boulders[count].name} - ${boulders[count].grade}`}
-        <span className='clickable' onClick={handleCountIncrease}> {">>"}</span>
-      </h1>
-      <h3 className='boulder-author'>{boulders[count].author}</h3>
+      <OldHeader
+        boulder={boulders[count]}
+        handleCountDecrease={handleCountDecrease}
+        handleCountIncrease={handleCountIncrease}
+      />
       <HoldsMap boulder={boulders[count]} />
     </>
   );
-};
+});

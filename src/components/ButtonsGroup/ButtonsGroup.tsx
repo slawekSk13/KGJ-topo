@@ -1,12 +1,14 @@
+import "./ButtonsGroup.css";
 import { Button } from "../Button/Button";
 import { IButtonType, IButtonsGroupProps } from "../../utilities/interfaces";
 import { ReactElement, useContext } from "react";
 import { observer } from "mobx-react-lite";
 import { StateContext } from "../../state/context";
+import { TooltipText } from "../../TooltipText/TooltipText";
 
 export const ButtonsGroup = observer(
   ({ buttonsArray }: IButtonsGroupProps): ReactElement => {
-    const { boulder, currentHold, appError } = useContext(StateContext);
+    const { appError } = useContext(StateContext);
 
     return (
       <div className="tooltip">
@@ -17,12 +19,11 @@ export const ButtonsGroup = observer(
           })}
         </div>
         {appError.checkCode("holds") && (
-          <span
-            className="tooltip-text tooltip-text__bottom clickable"
+          <TooltipText
+            className="tooltip-text__bottom clickable"
+            text="1-2 chwyty na start, 1 top i coś pośrodku"
             onClick={() => appError.removeCode("holds")}
-          >
-            1-2 chwyty na start, 1 top i coś pośrodku
-          </span>
+          />
         )}
       </div>
     );

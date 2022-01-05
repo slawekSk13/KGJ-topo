@@ -20,6 +20,12 @@ export interface IElementSize {
   height: number;
 }
 
+export interface ITooltipTextProps {
+  onClick?: voidFunc;
+  className: string;
+  text: string;
+}
+
 export enum EHoldTypes {
   HOLD = "hold",
   START = "start",
@@ -60,3 +66,5 @@ export enum EProblemType {
   BOULDER = "boulder",
   CIRCUIT = "circuit",
 }
+
+export type voidFunc = () => void;

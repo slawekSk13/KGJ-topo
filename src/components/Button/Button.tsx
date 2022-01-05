@@ -1,3 +1,5 @@
+import "./Button.css";
+
 import { ReactElement } from "react";
 import { IButtonType, EHoldTypes } from "../../utilities/interfaces";
 import { postToFirebase } from "../../utilities/firebase";
@@ -37,14 +39,18 @@ export const Button = observer(({ name, label }: IButtonType): ReactElement => {
   const save = async () => {
     const nameCondition = boulder.getName() === "";
     const holds = boulder.getHolds();
-    const startsCount = holds.filter(el => el.holdType === EHoldTypes.START).length;
-    const topCount = holds.filter(el => el.holdType === EHoldTypes.TOP).length;
+    const startsCount = holds.filter(
+      (el) => el.holdType === EHoldTypes.START
+    ).length;
+    const topCount = holds.filter(
+      (el) => el.holdType === EHoldTypes.TOP
+    ).length;
     const holdsCondition = startsCount > 2 || startsCount < 1 || topCount !== 1;
     if (nameCondition) {
       appError.setCode("noname");
-    } 
+    }
     if (holdsCondition) {
-appError.setCode('holds')
+      appError.setCode("holds");
     } else {
       const saveStatus = await postToFirebase(boulder);
       saveStatus ? reset() : console.log(saveStatus);
@@ -56,7 +62,7 @@ appError.setCode('holds')
   return (
     <button
       disabled={isDisabled()}
-      className={name}
+      className={`button__${name}`}
       onClick={() => handleButtonClick(name)}
     >
       {label}

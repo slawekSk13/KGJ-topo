@@ -1,0 +1,39 @@
+button {
+  color: white;
+  margin: 1rem 0.3rem;
+  width: 30%;
+  min-width: 3rem;
+  padding: 0.8rem 0;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 10px 10px var(--shadowColor);
+  cursor: pointer;
+  transition: 1s;
+}
+
+button:disabled {
+  box-shadow: none;
+  cursor: not-allowed;
+  color: black;
+}
+
+.button__hold {
+  background-color: #ff0000cc;
+}
+.button__foot {
+  background-color: #f703cecc;
+}
+.button__start {
+  background-color: #0443f0cc;
+}
+.button__top {
+  background-color: #05f12ccc;
+}
+
+.button__reset {
+  background-color: black;
+}
+
+.button__save {
+  background-color: gold;
+}

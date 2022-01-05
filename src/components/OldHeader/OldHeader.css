@@ -1,0 +1,9 @@
+.boulder-author {
+  font-size: 1.5rem;
+  margin: 0 0 1rem;
+}
+.boulder-name {
+  text-transform: uppercase;
+  margin: 1rem 0;
+  color: var(--fontColorMenu);
+}

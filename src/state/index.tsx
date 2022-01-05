@@ -33,7 +33,7 @@ export class Problem {
     this.name = "";
     this.author = "";
     this.grade = 0;
-    this.type = EProblemType.CIRCUIT;
+    this.type = EProblemType.BOULDER;
     makeAutoObservable(this);
   }
   upgrade() {

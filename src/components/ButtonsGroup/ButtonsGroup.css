@@ -1,0 +1,7 @@
+.buttons-group {
+    margin: 1rem;
+    display: flex;
+    max-width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }

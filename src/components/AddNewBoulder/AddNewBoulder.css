@@ -1,0 +1,13 @@
+.boulder-name-input {
+  color: var(--fontColorMenu);
+  border: none;
+  background-color: transparent;
+  font-size: 1.5rem;
+  text-align: center;
+  outline-color: var(--fontColorMenu);
+  border-bottom: 1px solid var(--fontColorMenu);
+  width: 50vw;
+  min-width: 310px;
+  margin: 1rem auto 3rem;
+  padding: 0.5rem 0.2rem 0;
+}

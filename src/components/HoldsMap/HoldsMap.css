@@ -1,0 +1,6 @@
+.holds-map {
+  background-image: url("https://highlightsphoto.pl/images/Plik_002.jpeg");
+  background-size: cover;
+  width: 98%;
+  box-shadow: 0 20px 20px var(--shadowColor);
+}

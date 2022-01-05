@@ -1,0 +1,24 @@
+.circle {
+  stroke-width: 3;
+  fill: none;
+}
+.circle__hold {
+  stroke: #ff000070;
+}
+.circle__foot {
+  stroke: #f703ce70;
+}
+.circle__start {
+  stroke: #0443f070;
+}
+.circle__top {
+  stroke: #05f12c70;
+}
+
+.circuit-number {
+  fill: none;
+  stroke-width: 1;
+  font-size: 1rem;
+  fill: #000000aa;
+  stroke: #ffffffaa;
+}

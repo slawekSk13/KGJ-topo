@@ -1,0 +1,13 @@
+.link__active {
+  background-color: var(--activeLinkBackgroundColor);
+}
+
+.link {
+  color: var(--fontColorMenu);
+  display: inline-block;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 2rem;
+  width: 100%;
+}

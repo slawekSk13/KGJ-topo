@@ -8,8 +8,7 @@ const db = getDatabase();
 // const auth = getAuth();
 
 const handleError = (err: any) => {
-  const errorToReturn = { code: err.code, error: true };
-  return errorToReturn;
+  return { code: err.code, error: true, data: [] };
 };
 
 // const handleRegister = async (email, password) => {
@@ -80,10 +79,10 @@ export const getFromFirebase = async () => {
     return get(child(dataRef, `boulders`)).then((snapshot) => {
       if (snapshot) {
         const data = snapshot.val();
-        return Object.values<Problem>(data);
-      } else return [];
+        return {data: Object.values<Problem>(data), error: false, code: ''};
+      } else return handleError({code: 'nodata'});
     });
   } catch (err) {
-    return []; // join error with useState in Old
+    return handleError(err);
   }
 };
