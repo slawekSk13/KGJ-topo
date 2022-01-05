@@ -1,4 +1,6 @@
-import { IButtonType, IConst, EHoldTypes } from "./interfaces";
+import { EButtonTypes, IButtonType } from "../components/Button/ButtonTypes";
+import { EHoldTypes } from "../components/Hold/HoldTypes";
+import { IConst } from "./types";
 
 export const constants: IConst = {
   sizeX: 400,
@@ -24,11 +26,11 @@ export const buttonsArray: IButtonType[] = [
     label: "Stopień"
   },
   {
-    name: EHoldTypes.RESET,
+    name: EButtonTypes.RESET,
     label: "Reset"
   },
   {
-    name: EHoldTypes.SAVE,
+    name: EButtonTypes.SAVE,
     label: "Zapisz"
   }
 ];

@@ -1,12 +1,13 @@
 import "./Button.css";
+import { EButtonTypes, IButtonType } from "./ButtonTypes";
 
 import { ReactElement } from "react";
-import { IButtonType, EHoldTypes } from "../../utilities/interfaces";
 import { postToFirebase } from "../../utilities/firebase";
 
 import { useContext } from "react";
 import { StateContext } from "../../state/context";
 import { observer } from "mobx-react-lite";
+import { EHoldTypes } from "../Hold/HoldTypes";
 
 export const Button = observer(({ name, label }: IButtonType): ReactElement => {
   const { boulder, currentHold, appError } = useContext(StateContext);
@@ -19,16 +20,16 @@ export const Button = observer(({ name, label }: IButtonType): ReactElement => {
     appError.clearCode();
   };
 
-  const handleButtonClick = (name: EHoldTypes) => {
+  const handleButtonClick = (name: EButtonTypes | EHoldTypes) => {
     switch (name) {
-      case "reset":
+      case EButtonTypes.RESET:
         reset();
         break;
-      case "save":
+      case EButtonTypes.SAVE:
         save();
         break;
       default:
-        handleHoldTypeChange();
+        handleHoldTypeChange(name);
     }
   };
 
@@ -57,7 +58,7 @@ export const Button = observer(({ name, label }: IButtonType): ReactElement => {
     }
   };
 
-  const handleHoldTypeChange = (): void => currentHold?.setHold(name);
+  const handleHoldTypeChange = (name: EHoldTypes): void => currentHold?.setHold(name);
 
   return (
     <button

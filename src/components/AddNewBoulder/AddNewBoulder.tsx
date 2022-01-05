@@ -1,21 +1,22 @@
 import "./AddNewBoulder.css";
+import { IChange, IClick } from "./AddNewBoulderTypes";
 import { ReactElement, useContext } from "react";
 import { handleNewHold } from "../../utilities/helpers";
 
 import { StateContext } from "../../state/context";
 import { HoldsMap } from "../HoldsMap/HoldsMap";
 import { observer } from "mobx-react-lite";
-import { TooltipText } from "../../TooltipText/TooltipText";
+import { TooltipText } from "../TooltipText/TooltipText";
 
 export const AddNewBoulder = observer((): ReactElement => {
   const { boulder, currentHold, appError } = useContext(StateContext);
-  const handleMapClick = (e: { clientX: number; clientY: number }): void => {
+  const handleMapClick = (e: IClick): void => {
     currentHold &&
       boulder.setHolds(
         handleNewHold(e, boulder.getHolds(), currentHold.getHold())
       );
   };
-  const handleChange = (e: { target: { value: string } }) => {
+  const handleChange = (e: IChange) => {
     const { value } = e.target;
     boulder.setName(value);
   };

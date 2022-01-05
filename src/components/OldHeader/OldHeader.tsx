@@ -1,6 +1,6 @@
 import "./OldHeader.css";
 import { Problem } from "../../state";
-import { voidFunc } from "../../utilities/interfaces";
+import { voidFunc } from "../../utilities/types";
 
 export const OldHeader = ({
   handleCountDecrease,

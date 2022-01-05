@@ -1,5 +1,7 @@
-import { EHoldTypes, IHold, IConst, IElementSize } from "./interfaces";
+import { IConst, IElementSize } from "./types";
 import { constants } from "./constants";
+import { EHoldTypes, IHold } from "../components/Hold/HoldTypes";
+import { IClick } from "../components/AddNewBoulder/AddNewBoulderTypes";
 
 export const queryElementParameters = (elementId: string): IElementSize => {
   const target: HTMLElement | null = document.getElementById(elementId);
@@ -13,8 +15,8 @@ export const queryElementParameters = (elementId: string): IElementSize => {
 };
 
 export const generateNewHold = (
-  e: { clientX: number; clientY: number },
-  constants: { sizeX: number; sizeY: number },
+  e: IClick,
+  constants: IConst,
   holdType: EHoldTypes
 ): IHold => {
   const { top, left, width, height }: IElementSize = queryElementParameters('holdsMap');
@@ -31,7 +33,7 @@ export const filterCondition = (
   Math.abs(el.y - holdToCheck.y) < constants.radius;
 
 export const handleNewHold = (
-  e: { clientX: number; clientY: number },
+  e: IClick,
   holds: IHold[],
   holdType: EHoldTypes
 ): IHold[] => {
