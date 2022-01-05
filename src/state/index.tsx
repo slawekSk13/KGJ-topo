@@ -1,10 +1,7 @@
 import { makeAutoObservable } from "mobx";
-import {
-  IHold,
-  EGrade,
-  EHoldTypes,
-  EProblemType,
-} from "../utilities/interfaces";
+import { EHoldTypes, IHold } from "../components/Hold/HoldTypes";
+import { EGrade, EProblemType } from "./stateTypes";
+
 
 export class HoldState {
   currentHold: EHoldTypes;

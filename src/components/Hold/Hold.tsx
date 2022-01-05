@@ -1,7 +1,7 @@
 import "./Hold.css";
 import { ReactElement } from "react";
 import { constants } from "../../utilities/constants";
-import { IHoldProps } from "../../utilities/interfaces";
+import { IHoldProps } from "./HoldTypes";
 export const Hold = ({ boulderHold, index }: IHoldProps): ReactElement => {
   const { x, y, holdType } = boulderHold;
   return (

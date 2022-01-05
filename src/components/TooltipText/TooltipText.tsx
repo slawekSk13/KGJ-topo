@@ -1,5 +1,6 @@
-import { ITooltipTextProps } from "../utilities/interfaces";
+
 import "./TooltipText.css";
+import { ITooltipTextProps } from "./TooltipTextTypes";
 
 export const TooltipText = ({
   className,

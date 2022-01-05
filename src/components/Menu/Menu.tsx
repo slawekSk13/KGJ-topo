@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { CustomLink } from "../CustomLink/CustomLink";
 import { queryElementParameters } from "../../utilities/helpers";
-import { TooltipText } from "../../TooltipText/TooltipText";
+import { TooltipText } from "../TooltipText/TooltipText";
 
 export const Menu = () => {
   const [active, setActive] = useState(false);

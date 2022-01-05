@@ -2,12 +2,10 @@ import "./HoldsMap.css";
 
 import { observer } from "mobx-react-lite";
 import { constants } from "../../utilities/constants";
-import {
-  EProblemType,
-  IHold,
-  IHoldsMapProps,
-} from "../../utilities/interfaces";
 import { Hold } from "../Hold/Hold";
+import { IHold } from "../Hold/HoldTypes";
+import { IHoldsMapProps } from "./HoldsMapTypes";
+import { EProblemType } from "../../state/stateTypes";
 
 export const HoldsMap = observer(
   ({ boulder, handleMapClick }: IHoldsMapProps) => {

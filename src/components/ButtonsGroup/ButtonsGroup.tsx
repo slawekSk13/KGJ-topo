@@ -1,10 +1,12 @@
 import "./ButtonsGroup.css";
 import { Button } from "../Button/Button";
-import { IButtonType, IButtonsGroupProps } from "../../utilities/interfaces";
+import { IButtonType } from "../Button/ButtonTypes";
+import { IButtonsGroupProps } from "./ButtonsGroupTypes";
+
 import { ReactElement, useContext } from "react";
 import { observer } from "mobx-react-lite";
 import { StateContext } from "../../state/context";
-import { TooltipText } from "../../TooltipText/TooltipText";
+import { TooltipText } from "../TooltipText/TooltipText";
 
 export const ButtonsGroup = observer(
   ({ buttonsArray }: IButtonsGroupProps): ReactElement => {
