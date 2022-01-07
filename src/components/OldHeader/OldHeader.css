@@ -3,6 +3,7 @@
   margin: 0 0 1rem;
 }
 .boulder-name {
+  font-size: 1.7rem;
   text-transform: uppercase;
   margin: 1rem 0;
   color: var(--fontColorMenu);

@@ -23,6 +23,7 @@
 
 .menu__active {
   box-shadow: 0 0 30px var(--shadowColor);
+  z-index: 150;
 }
 
 .menu__active.menu__left {

@@ -2,87 +2,68 @@ import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "./firebaseconfig";
 import { getDatabase, ref, set, get, child } from "firebase/database";
 import { Problem } from "../state";
+import { getAuth, sendPasswordResetEmail, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { IFirebaseReturn, ILoginParameters, IUserReturn } from "./types";
+import { noErrorDataObject, noErrorUserObject } from "./constants";
 
 initializeApp(firebaseConfig);
 const db = getDatabase();
-// const auth = getAuth();
+const auth = getAuth();
 
-const handleError = (err: any) => {
+const handleDataError = (err: any): IFirebaseReturn => {
   return { code: err.code, error: true, data: [] };
 };
+const handleUserError = (err: any): IUserReturn => {
+  return {code: err.code, error: true, user: null}
+}
 
-// const handleRegister = async (email, password) => {
-//   try {
-//     await createUserWithEmailAndPassword(auth, email, password);
-//     sendEmailVerification(auth.currentUser);
-//       signOut(auth);
-//       return {code: 'email-unverified', error: false}
-//   } catch (err) {
-//     return handleUserError(err);
-//   }
-// };
-
-// const handleLogin = async (email, password) => {
-//   try {
-//     await signInWithEmailAndPassword(auth, email, password);
-//     const user = auth.currentUser;
-//     if (!auth.currentUser.emailVerified) {
-//       signOut(auth);
-//       return {code: 'email-unverified', error: true}
-//     } else {
-//       return user;
-//     }
-//   } catch (err) {
-//     return handleUserError(err);
-//   }
-// };
-
-// const handleLogout = async () => {
-//   try {
-//     await signOut(auth);
-//     return true;
-//   } catch (err) {
-//     return handleUserError(err);
-//   }
-// };
-
-// const handleResetPassword = async (email) => {
-//   try {
-//     sendPasswordResetEmail(auth, email);
-//   } catch (err) {
-//     return handleUserError(err);
-//   }
-// };
-
-// const refreshData = async () => {
-//   try {
-//     const pastResults = await getFromFirebase("results");
-//     const pastPatients = await getFromFirebase("patients");
-//     return { pastResults, pastPatients };
-//   } catch (err) {
-//     return handleUserError(err);
-//   }
-// };
-
-export const postToFirebase = async (dataToSave: Problem) => {
+const handleLogin = async ({email, password}: ILoginParameters): Promise<IUserReturn> => {
   try {
-    await set(ref(db, `boulders/${dataToSave.id}`), dataToSave);
-    return true;
+    await signInWithEmailAndPassword(auth, email, password);
+    const user = auth.currentUser;
+      return {...noErrorUserObject, user};
   } catch (err) {
-    return handleError(err);
+    return handleUserError(err);
   }
 };
 
-export const getFromFirebase = async () => {
+const handleLogout = async (): Promise<IUserReturn> => {
+  try {
+    await signOut(auth);
+    return noErrorUserObject;
+  } catch (err) {
+    return handleUserError(err);
+  }
+};
+
+const handleResetPassword = async (email: string): Promise<IUserReturn> => {
+  try {
+    sendPasswordResetEmail(auth, email);
+    return noErrorUserObject;
+  } catch (err) {
+    return handleUserError(err);
+  }
+};
+
+export const postToFirebase = async (dataToSave: Problem): Promise<IFirebaseReturn> => {
+  try {
+    await set(ref(db, `boulders/${dataToSave.id}`), dataToSave);
+    return noErrorDataObject;
+  } catch (err) {
+    return handleDataError(err);
+  }
+};
+
+export const getFromFirebase = async (): Promise<IFirebaseReturn> => {
   try {
     const dataRef = ref(db);
     return get(child(dataRef, `boulders`)).then((snapshot) => {
       if (snapshot) {
         const data = snapshot.val();
-        return {data: Object.values<Problem>(data), error: false, code: ''};
-      } else return handleError({code: 'nodata'});
+        return {...noErrorDataObject, data: Object.values<Problem>(data)};
+      } else return handleDataError({ code: "nodata" });
     });
   } catch (err) {
-    return handleError(err);
+    return handleDataError(err);
   }
 };
