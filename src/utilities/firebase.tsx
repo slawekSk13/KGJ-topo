@@ -48,7 +48,7 @@ const handleResetPassword = async (email: string): Promise<IUserReturn> => {
 export const postToFirebase = async (dataToSave: Problem): Promise<IFirebaseReturn> => {
   try {
     await set(ref(db, `boulders/${dataToSave.id}`), dataToSave);
-    return noErrorDataObject;
+    return getFromFirebase();
   } catch (err) {
     return handleDataError(err);
   }

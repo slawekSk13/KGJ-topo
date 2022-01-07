@@ -1,5 +1,9 @@
 import "./Button.css";
-import { EButtonTypes, IButtonType } from "./ButtonTypes";
+import {
+  EButtonTypes,
+  IButtonType,
+  IValidateBoulderReturn,
+} from "./ButtonTypes";
 
 import { ReactElement } from "react";
 import { postToFirebase } from "../../utilities/firebase";
@@ -37,8 +41,8 @@ export const Button = observer(({ name, label }: IButtonType): ReactElement => {
     return name === currentHold?.getHold();
   };
 
-  const save = async () => {
-    const nameCondition = boulder.getName() === "";
+  const validateBoulder = (): IValidateBoulderReturn => {
+    const nameNotValid = boulder.getName() === "";
     const holds = boulder.getHolds();
     const startsCount = holds.filter(
       (el) => el.holdType === EHoldTypes.START
@@ -46,19 +50,26 @@ export const Button = observer(({ name, label }: IButtonType): ReactElement => {
     const topCount = holds.filter(
       (el) => el.holdType === EHoldTypes.TOP
     ).length;
-    const holdsCondition = startsCount > 2 || startsCount < 1 || topCount !== 1;
-    if (nameCondition) {
+    const holdsNotValid = startsCount > 2 || startsCount < 1 || topCount !== 1;
+    return { nameNotValid, holdsNotValid };
+  };
+
+  const save = async () => {
+    const { nameNotValid, holdsNotValid } = validateBoulder();
+    if (nameNotValid) {
       appError.setCode("noname");
     }
-    if (holdsCondition) {
+    if (holdsNotValid) {
       appError.setCode("holds");
     } else {
       const saveStatus = await postToFirebase(boulder);
-      saveStatus ? reset() : console.log(saveStatus);
+      saveStatus.error ? appError.setCode(saveStatus.code) : reset();
+      //przejście do logowania dla niezalogowanych
     }
   };
 
-  const handleHoldTypeChange = (name: EHoldTypes): void => currentHold?.setHold(name);
+  const handleHoldTypeChange = (name: EHoldTypes): void =>
+    currentHold?.setHold(name);
 
   return (
     <button

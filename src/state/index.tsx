@@ -74,7 +74,7 @@ constructor () {
   makeAutoObservable(this);
 }
 setCode(code: string) {
-  this.code = [...this.code, code];
+  this.checkCode(code) || (this.code = [...this.code, code]);
 }
 removeCode(code:string) {
   this.code = this.code.filter(el => el !== code);

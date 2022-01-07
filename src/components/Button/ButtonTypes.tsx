@@ -9,3 +9,8 @@ export enum EButtonTypes {
     name: EButtonTypes | EHoldTypes;
     label: string;
   }
+
+  export interface IValidateBoulderReturn {
+    holdsNotValid: boolean;
+    nameNotValid: boolean;
+  }

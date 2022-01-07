@@ -11,7 +11,6 @@ import { TooltipText } from "../TooltipText/TooltipText";
 export const ButtonsGroup = observer(
   ({ buttonsArray }: IButtonsGroupProps): ReactElement => {
     const { appError } = useContext(StateContext);
-
     return (
       <div className="tooltip">
         <div className="buttons-group">
