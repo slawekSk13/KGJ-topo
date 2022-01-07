@@ -18,3 +18,7 @@ body {
 .clickable {
   cursor: pointer;
 }
+
+.button__login {
+  background-color: var(--activeLinkBackgroundColor);
+}

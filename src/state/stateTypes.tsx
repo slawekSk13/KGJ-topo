@@ -9,6 +9,6 @@ export enum EProblemType {
 
 export interface IStateProps {
     boulder: Problem;
-    currentHold?: HoldState;
+    currentHold: HoldState;
     appError: AppError;
   }

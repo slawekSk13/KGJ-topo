@@ -1,4 +1,4 @@
-button {
+.button {
   color: white;
   margin: 1rem 0.3rem;
   width: 30%;
@@ -11,7 +11,7 @@ button {
   transition: 1s;
 }
 
-button:disabled {
+.button:disabled {
   box-shadow: none;
   cursor: not-allowed;
   color: black;

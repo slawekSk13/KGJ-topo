@@ -18,14 +18,14 @@ export class HoldState {
 }
 
 export class Problem {
-  id: number;
+  uid: number;
   boulderHolds: IHold[];
   name: string;
   author: string;
   grade: EGrade;
   type: EProblemType;
   constructor() {
-    this.id = new Date().valueOf();
+    this.uid = new Date().valueOf();
     this.boulderHolds = [];
     this.name = "";
     this.author = "";
@@ -60,10 +60,10 @@ export class Problem {
     return this.type;
   }
   setId() {
-    this.id = new Date().valueOf();
+    this.uid = new Date().valueOf();
   }
   getId() {
-    return this.id;
+    return this.uid;
   }
 }
 

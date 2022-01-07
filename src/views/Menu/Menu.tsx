@@ -1,12 +1,10 @@
 import "./Menu.css";
 import { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { CustomLink } from "../CustomLink/CustomLink";
+import { CustomLink } from "../../components/CustomLink/CustomLink";
 import { queryElementParameters } from "../../utilities/helpers";
-import { TooltipText } from "../TooltipText/TooltipText";
-import { MenuWrapper } from "../MenuWrapper/MenuWrapper";
-import { ESide } from "../MenuWrapper/MenuWrapperTypes";
+import { TooltipText } from "../../components/TooltipText/TooltipText";
+import { MenuWrapper } from "../../components/MenuWrapper/MenuWrapper";
+import { ESide } from "../../components/MenuWrapper/MenuWrapperTypes";
 
 export const Menu = () => {
   const [active, setActive] = useState(false);

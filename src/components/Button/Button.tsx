@@ -12,6 +12,7 @@ import { useContext } from "react";
 import { StateContext } from "../../state/context";
 import { observer } from "mobx-react-lite";
 import { EHoldTypes } from "../Hold/HoldTypes";
+import { EDataTypes } from "../../utilities/types";
 
 export const Button = observer(({ name, label }: IButtonType): ReactElement => {
   const { boulder, currentHold, appError } = useContext(StateContext);
@@ -37,8 +38,8 @@ export const Button = observer(({ name, label }: IButtonType): ReactElement => {
     }
   };
 
-  const isDisabled = () => {
-    return name === currentHold?.getHold();
+  const isDisabled = (): boolean => {
+    return name === currentHold.getHold();
   };
 
   const validateBoulder = (): IValidateBoulderReturn => {
@@ -62,19 +63,19 @@ export const Button = observer(({ name, label }: IButtonType): ReactElement => {
     if (holdsNotValid) {
       appError.setCode("holds");
     } else {
-      const saveStatus = await postToFirebase(boulder);
+      const saveStatus = await postToFirebase(boulder, EDataTypes.BOULDERS);
       saveStatus.error ? appError.setCode(saveStatus.code) : reset();
       //przejście do logowania dla niezalogowanych
     }
   };
 
   const handleHoldTypeChange = (name: EHoldTypes): void =>
-    currentHold?.setHold(name);
+    currentHold.setHold(name);
 
   return (
     <button
       disabled={isDisabled()}
-      className={`button__${name}`}
+      className={`button button__${name}`}
       onClick={() => handleButtonClick(name)}
     >
       {label}

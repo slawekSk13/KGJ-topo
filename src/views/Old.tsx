@@ -6,6 +6,7 @@ import { observer } from "mobx-react-lite";
 import { StateContext } from "../state/context";
 import { OldHeader } from "../components/OldHeader/OldHeader";
 import { FilterBar } from "../components/FilterBar/FilterBar";
+import { EDataTypes } from "../utilities/types";
 
 export const Old = observer(() => {
   const [boulders, setBoulders] = useState<Problem[]>([new Problem()]);
@@ -14,7 +15,7 @@ export const Old = observer(() => {
   const { appError } = useContext(StateContext);
 
   const loadData = async () => {
-    const { code, data, error } = await getFromFirebase();
+    const { code, data, error } = await getFromFirebase(EDataTypes.BOULDERS);
     setBoulders(data);
     error && appError.setCode(code);
   };

@@ -26,7 +26,7 @@ export const AddNewBoulder = observer((): ReactElement => {
       <div className="tooltip">
         <input
           onChange={handleChange}
-          className={"boulder-name-input clickable"}
+          className={"input clickable"}
           value={boulder.getName()}
           placeholder="nazwa"
         />
