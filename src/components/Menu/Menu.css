@@ -1,78 +1,25 @@
-.menu {
-    color: var(--fontColorMenu);
-    background-color: transparent;
-    width: 320px;
-    max-width: 100%;
-    position: absolute;
-    left: -320px;
-    z-index: 30;
-    transition: 1s;
-    display: flex;
-    justify-content: center;
-    height: 3rem;
-    background-color: var(--menuBackgroundColor);
-    min-height: 100vh;
-    padding: 5rem 0;
-  }
-  
-  .menu__active {
-    left: 0;
-    box-shadow: 0 0 30px var(--shadowColor);
-  }
-  
-  .menu-background {
-    background-color: var(--backgroundColor);
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
-    opacity: 0.5;
-    animation: in 1s;
-  }
-  
-  @keyframes in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 0.5;
-    }
-  }
-  
-  .hamburger {
-    position: absolute;
-    top: 10px;
-    right: -40px;
-    color: var(--fontColorMenu);
-    cursor: pointer;
-    transition: 1s;
-  }
-  
-  .menu__active .hamburger {
-    right: 10px;
-  }
-  
-  .menu-list {
-    list-style: none;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    max-height: 80vh;
-  }
-  
-  .menu-list li {
-    text-align: center;
-    padding: 0.5rem 0;
-  }
 
-  .menu .tooltip-text {
-    opacity: 0;
-    display: none;
-  }
 
-  .menu__active .link__not-active:hover + .tooltip-text {
-    opacity: 1;
-    display: inline-block;
-  }
-  
+.menu-list {
+  list-style: none;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-height: 80vh;
+}
+
+.menu-list li {
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+.menu .tooltip-text {
+  opacity: 0;
+  display: none;
+}
+
+.menu__active .link__not-active:hover + .tooltip-text {
+  opacity: 1;
+  display: inline-block;
+}

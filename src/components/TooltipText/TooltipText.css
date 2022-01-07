@@ -1,61 +1,61 @@
-
-
 .tooltip-text {
-    padding: 0.5rem 1rem;
-    position: absolute;
-    width: 200px;
-    background-color: var(--activeLinkBackgroundColor);
-    color: var(--fontColorMenu);
-    text-align: center;
-    z-index: 40;
-  }
-  
-  .tooltip-text__right {
-    top: 50%;
-    transform: translateY(-50%);
-    right: calc(-200px - 10px);
-  }
-  
-  .tooltip-text__bottom {
-    top: 100%;
-    transform: translate(50%, -20%);
-    right: 50%;
-  }
-  
-  .tooltip-text__top {
-    top: -50%;
-    transform: translate(50%, 50%);
-    right: 50%;
-  }
-  
-  .tooltip-text:after {
-    content: "";
-    position: absolute;
-    border-width: 10px;
-    border-style: solid;
-    transition-duration: 1s;
-  }
-  
-  .tooltip-text__right:after {
-    right: 100%;
-    top: 50%;
-    transform: translateY(-50%);
-    border-color: transparent var(--activeLinkBackgroundColor) transparent
-      transparent;
-  }
-  
-  .tooltip-text__bottom:after {
-    right: 50%;
-    bottom: 98%;
-    transform: translateX(50%);
-    border-color: transparent transparent var(--activeLinkBackgroundColor)
-      transparent;
-  }
-  
-  .tooltip-text__top:after {
-    right: 50%;
-    top: 100%;
-    transform: translateX(50%);
-    border-color: var(--activeLinkBackgroundColor) transparent transparent
-      transparent;
-  }
+  padding: 0.5rem 1rem;
+  position: absolute;
+  width: 200px;
+  background-color: var(--activeLinkBackgroundColor);
+  color: var(--fontColorMenu);
+  text-align: center;
+  z-index: 40;
+  box-shadow: 0 3px 5px var(--shadowColor);
+  border-radius: 8px;
+}
+
+.tooltip-text__right {
+  top: 50%;
+  transform: translateY(-50%);
+  right: calc(-200px - 10px);
+}
+
+.tooltip-text__bottom {
+  top: 100%;
+  transform: translate(50%, -20%);
+  right: 50%;
+}
+
+.tooltip-text__top {
+  top: -50%;
+  transform: translate(50%, 50%);
+  right: 50%;
+}
+
+.tooltip-text:after {
+  content: "";
+  position: absolute;
+  border-width: 10px;
+  border-style: solid;
+  transition-duration: 1s;
+}
+
+.tooltip-text__right:after {
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border-color: transparent var(--activeLinkBackgroundColor) transparent
+    transparent;
+}
+
+.tooltip-text__bottom:after {
+  right: 50%;
+  bottom: 98%;
+  transform: translateX(50%);
+  border-color: transparent transparent var(--activeLinkBackgroundColor)
+    transparent;
+}
+
+.tooltip-text__top:after {
+  right: 50%;
+  top: 100%;
+  transform: translateX(50%);
+  border-color: var(--activeLinkBackgroundColor) transparent transparent
+    transparent;
+}

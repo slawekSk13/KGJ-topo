@@ -5,6 +5,8 @@ import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { CustomLink } from "../CustomLink/CustomLink";
 import { queryElementParameters } from "../../utilities/helpers";
 import { TooltipText } from "../TooltipText/TooltipText";
+import { MenuWrapper } from "../MenuWrapper/MenuWrapper";
+import { ESide } from "../MenuWrapper/MenuWrapperTypes";
 
 export const Menu = () => {
   const [active, setActive] = useState(false);
@@ -19,17 +21,9 @@ export const Menu = () => {
     e.key === "Escape" && setActive(false);
   });
   return (
-    <>
-      <nav
-        className={active ? `menu menu__active` : `menu`}
-        style={active ? { height } : undefined}
-      >
-        <FontAwesomeIcon
-          className="hamburger"
-          icon={active ? faTimes : faBars}
-          size={"2x"}
-          onClick={handleClick}
-        />
+    <MenuWrapper side={ESide.LEFT}>
+      <>
+        
         <ul className="menu-list">
           <li>
             <ul>
@@ -64,14 +58,7 @@ export const Menu = () => {
             />
           </li>
         </ul>
-      </nav>
-      {active && (
-        <div
-          onClick={handleClick}
-          className="menu-background"
-          style={{ height }}
-        />
-      )}
-    </>
+      </>
+    </MenuWrapper>
   );
 };

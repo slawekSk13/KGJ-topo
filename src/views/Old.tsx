@@ -5,6 +5,7 @@ import { Problem } from "../state";
 import { observer } from "mobx-react-lite";
 import { StateContext } from "../state/context";
 import { OldHeader } from "../components/OldHeader/OldHeader";
+import { FilterBar } from "../components/FilterBar/FilterBar";
 
 export const Old = observer(() => {
   const [boulders, setBoulders] = useState<Problem[]>([new Problem()]);
@@ -45,6 +46,7 @@ export const Old = observer(() => {
         handleCountIncrease={handleCountIncrease}
       />
       <HoldsMap boulder={boulders[count]} />
+      <FilterBar />
     </>
   );
 });

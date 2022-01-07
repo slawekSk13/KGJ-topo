@@ -1,0 +1,76 @@
+.menu {
+  color: var(--fontColorMenu);
+  width: 320px;
+  max-width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 30;
+  transition: 1s;
+  display: flex;
+  justify-content: center;
+  height: 3rem;
+  background-color: var(--menuBackgroundColor);
+  min-height: 100vh;
+  padding: 5rem 0;
+}
+
+.menu__left {
+  left: -320px;
+}
+.menu__right {
+  right: -320px;
+}
+
+.menu__active {
+  box-shadow: 0 0 30px var(--shadowColor);
+}
+
+.menu__active.menu__left {
+  left: 0;
+}
+.menu__active.menu__right {
+    right: 0;
+  }
+
+.menu-background {
+  background-color: var(--backgroundColor);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  opacity: 0.5;
+  animation: in 1s;
+}
+
+@keyframes in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.5;
+  }
+}
+
+.hamburger {
+  position: absolute;
+  color: var(--fontColorMenu);
+  cursor: pointer;
+  transition: 1s;
+  top: 10px;
+}
+
+.menu__left .hamburger {
+  right: -40px;
+}
+
+.menu__right .hamburger {
+    top: 13px;
+  left: -40px;
+}
+
+.menu__active.menu__left .hamburger {
+  right: 10px;
+}
+.menu__active.menu__right .hamburger {
+    left: 10px;
+  }
