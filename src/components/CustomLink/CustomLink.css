@@ -1,5 +1,21 @@
-.link__active {
+.link::before {
   background-color: var(--activeLinkBackgroundColor);
+  content: "";
+  inset: 0;
+  position: absolute;
+  transform-origin: right;
+  z-index: -1;
+  transform: scaleX(0);
+  transition: transform 0.5s ease-in-out;
+}
+
+.link__active::before, .link:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.link__active {
+  cursor: default;
 }
 
 .link {
@@ -10,4 +26,5 @@
   font-weight: 600;
   font-size: 2rem;
   width: 100%;
+  padding: 0.5rem 0 0.5rem 2rem;
 }

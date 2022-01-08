@@ -9,11 +9,6 @@
   max-height: 80vh;
 }
 
-.menu-list li {
-  text-align: center;
-  padding: 0.5rem 0;
-}
-
 .menu .tooltip-text {
   opacity: 0;
   display: none;

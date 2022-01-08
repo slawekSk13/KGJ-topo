@@ -13,7 +13,7 @@
 
 .button:disabled {
   box-shadow: none;
-  cursor: not-allowed;
+  cursor: default;
   color: black;
   border: 1px solid black;
 }
