@@ -23,7 +23,6 @@ export const OldHeader = ({
           {">>"}
         </span>
       </h1>
-      <h3 className="boulder-author">{boulder.author}</h3>
     </>
   );
 };

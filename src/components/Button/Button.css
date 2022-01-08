@@ -1,13 +1,13 @@
 .button {
   color: white;
   margin: 1rem 0.3rem;
-  width: 30%;
-  min-width: 3rem;
+  min-width: 7rem;
   padding: 0.8rem 0;
   border: none;
   border-radius: 10px;
   box-shadow: 0 10px 10px var(--shadowColor);
   cursor: pointer;
+  flex: 1;
   transition: 1s;
 }
 

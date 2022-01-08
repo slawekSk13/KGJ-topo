@@ -36,7 +36,7 @@ export const AddNewBoulder = observer((): ReactElement => {
         {appError.checkCode("noname") && boulder.getName() === "" && (
           <TooltipText
             className="tooltip-text__bottom clickable"
-            text="Nazwiesz to jakoś?"
+            text="Przydałaby się jakaś nazwa..."
             onClick={() => appError.removeCode("noname")}
           />
         )}

@@ -4,7 +4,7 @@ import { buttonsArray } from "../utilities/constants"
 
 export const Home = () => {
     return (<>
-        <ButtonsGroup buttonsArray={buttonsArray} />
         <AddNewBoulder/>
+        <ButtonsGroup buttonsArray={buttonsArray} />
         </>)
 }

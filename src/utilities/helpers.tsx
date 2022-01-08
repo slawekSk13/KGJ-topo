@@ -3,6 +3,12 @@ import { constants } from "./constants";
 import { EHoldTypes, IHold } from "../components/Hold/HoldTypes";
 import { IClick } from "../components/AddNewBoulder/AddNewBoulderTypes";
 
+export const changeLocation = (newLocation?: string): void => {
+  const adress = newLocation ? newLocation : "";
+  window.location.href = `/#/${adress}`; // dev
+  //window.location.href = `/sumator/#/${newLocation}`; //production
+};
+
 export const queryElementParameters = (elementId: string): IElementSize => {
   const target: HTMLElement | null = document.getElementById(elementId);
   const rect: DOMRect | undefined = target?.getBoundingClientRect();
@@ -10,7 +16,7 @@ export const queryElementParameters = (elementId: string): IElementSize => {
     top: rect?.top || 100,
     left: rect?.left || 100,
     width: rect?.width || 400,
-    height: rect?.height || 300
+    height: rect?.height || 300,
   };
 };
 
@@ -19,7 +25,8 @@ export const generateNewHold = (
   constants: IConst,
   holdType: EHoldTypes
 ): IHold => {
-  const { top, left, width, height }: IElementSize = queryElementParameters('holdsMap');
+  const { top, left, width, height }: IElementSize =
+    queryElementParameters("holdsMap");
   const x = ((e.clientX - left) / width) * constants.sizeX;
   const y = ((e.clientY - top) / height) * constants.sizeY;
   return { x, y, holdType };
