@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Input } from "../components/Input/Input";
+import { EInputTypes } from "../components/Input/InputTypes";
 import { handleLogin } from "../utilities/firebase";
 
 export const Login = () => {
@@ -10,17 +12,15 @@ export const Login = () => {
   };
   return (
     <>
-      <input
-        className="input clickable"
-        type="email"
+      <Input
+        type={EInputTypes.EMAIL}
         name="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder='e-mail'
       />
-      <input
-        className="input clickable"
-        type="password"
+      <Input
+        type={EInputTypes.PASSWORD}
         name="passw"
         value={password}
         onChange={(e) => setPassword(e.target.value)}

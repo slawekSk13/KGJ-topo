@@ -1,5 +1,5 @@
 import "./AddNewBoulder.css";
-import { IChange, IClick } from "./AddNewBoulderTypes";
+import { IClick } from "./AddNewBoulderTypes";
 import { ReactElement, useContext } from "react";
 import { handleNewHold } from "../../utilities/helpers";
 
@@ -7,6 +7,8 @@ import { StateContext } from "../../state/context";
 import { HoldsMap } from "../HoldsMap/HoldsMap";
 import { observer } from "mobx-react-lite";
 import { TooltipText } from "../TooltipText/TooltipText";
+import { Input } from "../Input/Input";
+import { EInputTypes, IChange } from "../Input/InputTypes";
 
 export const AddNewBoulder = observer((): ReactElement => {
   const { boulder, currentHold, appError } = useContext(StateContext);
@@ -16,7 +18,7 @@ export const AddNewBoulder = observer((): ReactElement => {
         handleNewHold(e, boulder.getHolds(), currentHold.getHold())
       );
   };
-  const handleChange = (e: IChange) => {
+  const handleChange = (e: IChange): void => {
     const { value } = e.target;
     boulder.setName(value);
   };
@@ -24,11 +26,12 @@ export const AddNewBoulder = observer((): ReactElement => {
   return (
     <>
       <div className="tooltip">
-        <input
+        <Input
           onChange={handleChange}
-          className={"input clickable"}
           value={boulder.getName()}
           placeholder="nazwa"
+          type={EInputTypes.TEXT}
+          name='boulder-name'
         />
         {appError.checkCode("noname") && boulder.getName() === "" && (
           <TooltipText
