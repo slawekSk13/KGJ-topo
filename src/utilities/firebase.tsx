@@ -7,7 +7,6 @@ import {
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
-  User,
 } from "firebase/auth";
 import {
   EDataTypes,
@@ -22,10 +21,10 @@ initializeApp(firebaseConfig);
 const db = getDatabase();
 const auth = getAuth();
 
-const handleDataError = (err: any): IFirebaseReturn => {
+export const handleDataError = (err: any): IFirebaseReturn => {
   return { code: err.code, error: true, data: [] };
 };
-const handleUserError = (err: any): IUserReturn => {
+export const handleUserError = (err: any): IUserReturn => {
   return { code: err.code, error: true, user: null };
 };
 
