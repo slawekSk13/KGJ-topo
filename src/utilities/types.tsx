@@ -1,4 +1,4 @@
-import { Problem } from "../state";
+import { Problem } from "../state/Problem";
 import { User } from "firebase/auth";
 
 export interface IConst {

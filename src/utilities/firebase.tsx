@@ -1,7 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "./firebaseconfig";
 import { getDatabase, ref, set, get, child } from "firebase/database";
-import { Problem } from "../state";
 import {
   getAuth,
   sendPasswordResetEmail,
@@ -16,6 +15,7 @@ import {
   IUserToSave,
 } from "./types";
 import { noErrorDataObject, noErrorUserObject } from "./constants";
+import { Problem } from "../state/Problem";
 
 initializeApp(firebaseConfig);
 const db = getDatabase();

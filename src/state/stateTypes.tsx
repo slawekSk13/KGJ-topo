@@ -1,4 +1,8 @@
-import { AppError, HistoricalBoulders, HoldState, LoggedUser, Problem } from ".";
+import { AppError } from "./AppError";
+import { HistoricalBoulders } from "./HistoricalBoulders";
+import { HoldState } from "./HoldState";
+import { LoggedUser } from "./LoggedUser";
+import { Problem } from "./Problem";
 
 export type EGrade = 0 | 1 | 2 | 3 | 4 | 5;
 
