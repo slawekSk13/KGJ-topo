@@ -39,3 +39,7 @@
 .button__save {
   background-color: gold;
 }
+
+.button__login {
+  background-color: var(--activeLinkBackgroundColor);
+}

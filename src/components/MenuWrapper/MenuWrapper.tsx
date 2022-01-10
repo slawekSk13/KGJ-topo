@@ -54,13 +54,12 @@ export const MenuWrapper = ({ children, side }: IMenuWrapperProps) => {
         )}
         {children}
       </nav>
-      {active && (
         <div
           onClick={handleClick}
           className="menu-background"
           style={{ height }}
         />
-      )}
+      
     </>
   );
 };
