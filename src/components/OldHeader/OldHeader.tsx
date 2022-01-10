@@ -5,6 +5,7 @@ import { observer } from "mobx-react-lite";
 
 export const OldHeader = observer(() => {
   const { historicalBoulders, loggedUser } = useContext(StateContext);
+  const {user} = loggedUser;
   const handleUpgrade = () => {
     loggedUser.user ? historicalBoulders.addAscent(loggedUser.user) : alert('not logged in');
     // console.log(historicalBoulders.shownBoulder.grade);
@@ -29,9 +30,9 @@ export const OldHeader = observer(() => {
           {">>"}
         </span>
       </h1>
-      <button className="button button__login" onClick={handleUpgrade}>
+      {loggedUser.user && !historicalBoulders.checkAscents(loggedUser.user) && <button className="button button__login" onClick={handleUpgrade}>
         Zrobiłem
-      </button>
+      </button>}
     </>
   );
 });
