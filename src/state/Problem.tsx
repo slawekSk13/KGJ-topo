@@ -89,4 +89,10 @@ export class Problem {
   checkAscents(user: User) {
     return this.getAscents().some((el) => el.userUid === user.uid);
   }
+  setAscents(usersArray: IDoneBy[]) {
+    this.doneBy = [...usersArray];
+  }
+  setGrade(grade: EGrade) {
+    this.grade = grade;
+  }
 }

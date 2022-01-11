@@ -8,40 +8,47 @@ export const OldHeader = observer(() => {
   const { historicalBoulders, loggedUser } = useContext(StateContext);
   const handleUpgrade = () => {
     loggedUser.user
-      ? historicalBoulders.addAscent(loggedUser.user)
+      ? historicalBoulders.currentBoulder.addAscent(loggedUser.user)
       : alert("not logged in");
   };
   return (
     <>
-      <div className="tooltip">
-        <h1 className="boulder-name">
-          <span
-            className="clickable"
-            onClick={() => historicalBoulders.decreaseCount()}
-          >
-            {"<<"}{" "}
-          </span>
-          {`${historicalBoulders.getName()} - ${historicalBoulders.getGrade()}`}
-          <span
-            className="clickable"
-            onClick={() => historicalBoulders.increaseCount()}
-          >
-            {" "}
-            {">>"}
-          </span>
-        </h1>{" "}
-        <TooltipText
-          className={`tooltip-text__bottom`}
-          text={`Autor: ${historicalBoulders.getAuthor()}, powtórzone przez: ${
-            historicalBoulders.getAscents()[0]?.userUid
-          }`}
-        />
-      </div>
-      {loggedUser.user && !historicalBoulders.checkAscents(loggedUser.user) && (
-        <button className="button button__login" onClick={handleUpgrade}>
-          Zrobiłem
-        </button>
-      )}
+      <h1 className="boulder-name">
+        <span
+          className="clickable"
+          onClick={() => historicalBoulders.decreaseCount()}
+        >
+          {"<<"}{" "}
+        </span>
+        <span className="tooltip">
+          {`${historicalBoulders.currentBoulder.getName()} - ${historicalBoulders.currentBoulder.getGrade()}`}
+          <TooltipText
+            className={`tooltip-text__bottom`}
+            text={`Autor: ${historicalBoulders.currentBoulder.getAuthor()}, ${
+              historicalBoulders.currentBoulder.getAscents().length === 0
+                ? "bez powtórzeń"
+                : "powtórzone przez: " +
+                  historicalBoulders.currentBoulder
+                    .getAscents()
+                    .map((el) => el.userUid)
+                    .join(", ")
+            }`}
+          />
+        </span>
+        <span
+          className="clickable"
+          onClick={() => historicalBoulders.increaseCount()}
+        >
+          {" "}
+          {">>"}
+        </span>
+      </h1>{" "}
+      {loggedUser.user &&
+        !historicalBoulders.currentBoulder.checkAscents(loggedUser.user) && (
+          <button className="button button__login" onClick={handleUpgrade}>
+            Zrobiłem
+          </button>
+        )}
     </>
   );
 });

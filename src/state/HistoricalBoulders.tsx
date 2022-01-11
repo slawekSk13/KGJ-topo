@@ -2,21 +2,24 @@ import { makeObservable, observable, action } from "mobx";
 import { Problem } from "./Problem";
 import { IDoneBy, EGrade } from "./stateTypes";
 
-export class HistoricalBoulders extends Problem {
+export class HistoricalBoulders {
     boulders: Problem[];
     count: number;
+    currentBoulder: Problem;
     constructor() {
-      super();
       makeObservable(this, {
         boulders: observable,
         setBoulders: action,
         setBoulder: action,
         count: observable,
         increaseCount: action,
-        decreaseCount: observable,
+        decreaseCount: action,
+        currentBoulder: observable,
+        setCurrentBoulder: action,
       });
       this.boulders = [];
       this.count = 0;
+      this.currentBoulder = new Problem();
     }
     setBoulders(boulders: Problem[]) {
       this.boulders = [...boulders];
@@ -27,7 +30,7 @@ export class HistoricalBoulders extends Problem {
     }
     setBoulder() {
       this.boulders.length > 0 &&
-        this.setHistoricalBoulder(this.boulders[this.count]);
+        this.setCurrentBoulder(this.boulders[this.count]);
     }
     increaseCount() {
       if (this.count < this.boulders.length - 1) {
@@ -41,19 +44,16 @@ export class HistoricalBoulders extends Problem {
       } else this.count = this.boulders.length - 1;
       this.setBoulder();
     }
-    setAscents(usersArray: IDoneBy[]) {
-      this.doneBy = [...usersArray];
+    setCurrentBoulder(historicalBoulder: Problem) {
+      this.currentBoulder.setId(historicalBoulder.uid);
+      this.currentBoulder.setHolds([...historicalBoulder.boulderHolds]);
+      this.currentBoulder.setName(historicalBoulder.name);
+      this.currentBoulder.setAuthor(historicalBoulder.authorUid);
+      this.currentBoulder.setGrade(historicalBoulder.grade);
+      this.currentBoulder.setType(historicalBoulder.type);
+      this.currentBoulder.setAscents(historicalBoulder.doneBy);
     }
-    setGrade(grade: EGrade) {
-      this.grade = grade;
-    }
-    setHistoricalBoulder(historicalBoulder: Problem) {
-      this.setId(historicalBoulder.uid);
-      this.setHolds([...historicalBoulder.boulderHolds]);
-      this.setName(historicalBoulder.name);
-      this.setAuthor(historicalBoulder.authorUid);
-      this.setGrade(historicalBoulder.grade);
-      this.setType(historicalBoulder.type);
-      this.setAscents(historicalBoulder.doneBy);
+    getCurrentBoulder() {
+      return this.currentBoulder;
     }
   }

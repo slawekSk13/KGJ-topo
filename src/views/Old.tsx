@@ -36,7 +36,7 @@ export const Old = observer(() => {
         <>
           <OldHeader />
          
-          <HoldsMap boulder={historicalBoulders} />
+          <HoldsMap boulder={historicalBoulders.getCurrentBoulder()} />
         </>
       )}
       <FilterBar />

@@ -1,3 +1,6 @@
+.tooltip {
+  display: inline-block;
+}
 .tooltip .tooltip-text {
   opacity: 0;
   display: none;
@@ -19,6 +22,9 @@
   z-index: 40;
   border-radius: 8px;
   border: 2px solid var(--fontColorMenu);
+  font-size: 1rem;
+  text-transform: none;
+  font-weight: normal;
 }
 
 .tooltip-text__right {
@@ -29,7 +35,7 @@
 
 .tooltip-text__bottom {
   top: 100%;
-  transform: translate(50%, -20%);
+  transform: translate(50%, .5rem);
   right: 50%;
 }
 
