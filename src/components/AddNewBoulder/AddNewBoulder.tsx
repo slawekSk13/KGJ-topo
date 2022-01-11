@@ -25,7 +25,7 @@ export const AddNewBoulder = observer((): ReactElement => {
 
   return (
     <>
-      <div className="tooltip">
+      <div>
         <Input
           onChange={handleChange}
           value={boulder.getName()}
