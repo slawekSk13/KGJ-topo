@@ -1,7 +1,7 @@
 import { MouseEventHandler } from "react";
-import { Problem } from "../../state/Problem";
+import { Boulder } from "../../state/Problem";
 
 export interface IHoldsMapProps {
-    boulder: Problem;
+    boulder: Boulder;
     handleMapClick?: MouseEventHandler;
   }

@@ -5,7 +5,7 @@ import { constants } from "../../utilities/constants";
 import { Hold } from "../Hold/Hold";
 import { IHold } from "../Hold/HoldTypes";
 import { IHoldsMapProps } from "./HoldsMapTypes";
-import { EProblemType } from "../../state/stateTypes";
+import { EBoulderType } from "../../state/stateTypes";
 
 export const HoldsMap = observer(
   ({ boulder, handleMapClick }: IHoldsMapProps) => {
@@ -20,7 +20,7 @@ export const HoldsMap = observer(
           <Hold
             key={i}
             boulderHold={boulderHold}
-            index={boulder.type === EProblemType.CIRCUIT && i + 1}
+            index={boulder.type === EBoulderType.CIRCUIT && i + 1}
           />
         ))}
       </svg>

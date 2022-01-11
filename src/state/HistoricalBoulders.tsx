@@ -1,11 +1,11 @@
 import { makeObservable, observable, action } from "mobx";
-import { Problem } from "./Problem";
+import { Boulder } from "./Problem";
 import { IDoneBy, EGrade } from "./stateTypes";
 
 export class HistoricalBoulders {
-    boulders: Problem[];
+    boulders: Boulder[];
     count: number;
-    currentBoulder: Problem;
+    currentBoulder: Boulder;
     constructor() {
       makeObservable(this, {
         boulders: observable,
@@ -19,9 +19,9 @@ export class HistoricalBoulders {
       });
       this.boulders = [];
       this.count = 0;
-      this.currentBoulder = new Problem();
+      this.currentBoulder = new Boulder();
     }
-    setBoulders(boulders: Problem[]) {
+    setBoulders(boulders: Boulder[]) {
       this.boulders = [...boulders];
       this.setBoulder();
     }
@@ -44,7 +44,7 @@ export class HistoricalBoulders {
       } else this.count = this.boulders.length - 1;
       this.setBoulder();
     }
-    setCurrentBoulder(historicalBoulder: Problem) {
+    setCurrentBoulder(historicalBoulder: Boulder) {
       this.currentBoulder.setId(historicalBoulder.uid);
       this.currentBoulder.setHolds([...historicalBoulder.boulderHolds]);
       this.currentBoulder.setName(historicalBoulder.name);

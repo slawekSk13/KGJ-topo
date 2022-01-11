@@ -1,15 +1,15 @@
 import { User } from "firebase/auth";
 import { action, makeObservable, observable } from "mobx";
 import { IHold } from "../components/Hold/HoldTypes";
-import { EGrade, EProblemType, IDoneBy } from "./stateTypes";
+import { EGrade, EBoulderType, IDoneBy } from "./stateTypes";
 
-export class Problem {
+export class Boulder {
   uid: number;
   boulderHolds: IHold[];
   name: string;
   authorUid: string;
   grade: EGrade;
-  type: EProblemType;
+  type: EBoulderType;
   doneBy: IDoneBy[];
   constructor() {
     makeObservable(this, {
@@ -33,7 +33,7 @@ export class Problem {
     this.name = "";
     this.authorUid = "";
     this.grade = 0;
-    this.type = EProblemType.BOULDER;
+    this.type = EBoulderType.BOULDER;
     this.doneBy = [];
   }
   setId(id?: number) {
@@ -65,7 +65,7 @@ export class Problem {
   getHolds() {
     return this.boulderHolds;
   }
-  setType(type: EProblemType) {
+  setType(type: EBoulderType) {
     this.type = type;
   }
   getType() {

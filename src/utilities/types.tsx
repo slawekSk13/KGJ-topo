@@ -1,4 +1,4 @@
-import { Problem } from "../state/Problem";
+import { Boulder } from "../state/Problem";
 import { User } from "firebase/auth";
 
 export interface IConst {
@@ -17,7 +17,7 @@ export interface IElementSize {
 export type voidFunc = () => void;
 
 export interface IFirebaseReturn {
-  data: Problem[];
+  data: Boulder[];
   error: boolean;
   code: string;
 }

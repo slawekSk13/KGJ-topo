@@ -15,7 +15,7 @@ import {
   IUserToSave,
 } from "./types";
 import { noErrorDataObject, noErrorUserObject } from "./constants";
-import { Problem } from "../state/Problem";
+import { Boulder } from "../state/Problem";
 
 initializeApp(firebaseConfig);
 const db = getDatabase();
@@ -77,7 +77,7 @@ export const handleResetPassword = async (
 };
 
 export const postToFirebase = async (
-  dataToSave: Problem | IUserToSave | null,
+  dataToSave: Boulder | IUserToSave | null,
   dataType: EDataTypes
 ): Promise<IFirebaseReturn> => {
   try {
@@ -98,7 +98,7 @@ export const getFromFirebase = async (
     return get(child(dataRef, dataType)).then((snapshot) => {
       if (snapshot) {
         const data = snapshot.val();
-        return { ...noErrorDataObject, data: Object.values<Problem>(data) };
+        return { ...noErrorDataObject, data: Object.values<Boulder>(data) };
       } else return handleDataError({ code: "nodata" });
     });
   } catch (err) {
