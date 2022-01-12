@@ -6,3 +6,4 @@ Filtrowanie
 Dodanie przejścia
 Obwody - koniec tam, gdzie start, inne przyciski, zmiana rodzaju problemu
 Statystyki
+Main - error handler

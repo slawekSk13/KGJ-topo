@@ -6,9 +6,18 @@ import { ESide } from "../../components/MenuWrapper/MenuWrapperTypes";
 import { useContext } from "react";
 import { StateContext } from "../../state/context";
 import { observer } from "mobx-react-lite";
+import { handleLogout } from "../../utilities/firebase";
 
 export const Menu = observer(() => {
   const { loggedUser } = useContext(StateContext);
+  const handleClick = async () => {
+    try {
+const loginEffect = await handleLogout();
+loggedUser.clearUser();
+    } catch(err) {
+      console.log(err)
+    }
+  }
   const loginLink = (
     <>
       <CustomLink to="/login">Zaloguj</CustomLink>
@@ -19,13 +28,13 @@ export const Menu = observer(() => {
     </>
   );
   const logoutLink = (
-    <>
+    <span onClick={handleClick}>
       <CustomLink to="/login">Wyloguj</CustomLink>
       <TooltipText
         className="tooltip-text__right"
         text="Zamknij za sobą drzwi"
       />
-    </>
+    </span>
   );
   const profileLink = (
     <li>
