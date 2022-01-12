@@ -1,3 +1,4 @@
+import { AllUsers } from "./AllUsers";
 import { AppError } from "./AppError";
 import { HistoricalBoulders } from "./HistoricalBoulders";
 import { HoldState } from "./HoldState";
@@ -17,6 +18,7 @@ export interface IStateProps {
     currentHold: HoldState;
     appError: AppError;
     loggedUser: LoggedUser;
+    allUsers: AllUsers;
   }
 
   export interface IDoneBy {

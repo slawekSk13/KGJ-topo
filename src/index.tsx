@@ -3,6 +3,7 @@ import { render } from "react-dom";
 import { App } from "./App";
 import { StateContext } from "./state/context";
 import {
+  allUsers,
   appError,
   boulder,
   currentHold,
@@ -18,7 +19,8 @@ render(
       historicalBoulders,
       currentHold,
       appError,
-      loggedUser
+      loggedUser,
+      allUsers
     }}
   >
     <App />

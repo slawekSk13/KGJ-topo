@@ -5,12 +5,13 @@ import { observer } from "mobx-react-lite";
 import { TooltipText } from "../TooltipText/TooltipText";
 
 export const OldHeader = observer(() => {
-  const { historicalBoulders, loggedUser } = useContext(StateContext);
+  const { historicalBoulders, loggedUser, allUsers } = useContext(StateContext);
   const handleUpgrade = () => {
     loggedUser.user
       ? historicalBoulders.currentBoulder.addAscent(loggedUser.user)
       : alert("not logged in");
   };
+  
   return (
     <>
       <h1 className="boulder-name">
@@ -24,13 +25,13 @@ export const OldHeader = observer(() => {
           {`${historicalBoulders.currentBoulder.getName()} - ${historicalBoulders.currentBoulder.getGrade()}`}
           <TooltipText
             className={`tooltip-text__bottom`}
-            text={`Autor: ${historicalBoulders.currentBoulder.getAuthor()}, ${
-              historicalBoulders.currentBoulder.getAscents().length === 0
-                ? "bez powtórzeń"
-                : "powtórzone przez: " +
+            text={`Autor: ${allUsers.getUserDisplayName(historicalBoulders.currentBoulder.getAuthor())}, ${
+              (!(historicalBoulders.currentBoulder.getAscents().length > 0))
+                ? "bez przejść"
+                : "zrobili: " +
                   historicalBoulders.currentBoulder
                     .getAscents()
-                    .map((el) => el.userUid)
+                    .map((el) => allUsers.getUserDisplayName(el.userUid))
                     .join(", ")
             }`}
           />

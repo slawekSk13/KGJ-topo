@@ -51,7 +51,7 @@ export class HistoricalBoulders {
       this.currentBoulder.setAuthor(historicalBoulder.authorUid);
       this.currentBoulder.setGrade(historicalBoulder.grade);
       this.currentBoulder.setType(historicalBoulder.type);
-      this.currentBoulder.setAscents(historicalBoulder.doneBy);
+      historicalBoulder.doneBy ? this.currentBoulder.setAscents(historicalBoulder.doneBy) : this.currentBoulder.setAscents([]);
     }
     getCurrentBoulder() {
       return this.currentBoulder;

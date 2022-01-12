@@ -25,22 +25,20 @@ export const AddNewBoulder = observer((): ReactElement => {
 
   return (
     <>
-      <div>
         <Input
           onChange={handleChange}
           value={boulder.getName()}
           placeholder="nazwa"
           type={EInputTypes.TEXT}
           name='boulder-name'
-        />
-        {appError.checkCode("noname") && boulder.getName() === "" && (
+        >
+        {appError.checkCode("noname") && boulder.getName() === "" ? (
           <TooltipText
             className="tooltip-text__bottom clickable"
             text="Przydałaby się jakaś nazwa..."
             onClick={() => appError.removeCode("noname")}
           />
-        )}
-      </div>
+        ) : null}</Input>
       <HoldsMap boulder={boulder} handleMapClick={handleMapClick} />
     </>
   );

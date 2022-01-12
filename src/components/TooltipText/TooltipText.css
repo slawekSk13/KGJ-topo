@@ -1,5 +1,6 @@
 .tooltip {
   display: inline-block;
+  cursor: help;
 }
 .tooltip .tooltip-text {
   opacity: 0;

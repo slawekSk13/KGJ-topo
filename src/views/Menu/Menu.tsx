@@ -57,13 +57,13 @@ export const Menu = observer(() => {
                 />
               </li>
                 {loggedUser.getUser() && profileLink}
-              <li>
+              {/* <li>
                 <CustomLink to="/stats">Statystyki</CustomLink>
                 <TooltipText
                   className="tooltip-text__right"
                   text="Komu zgina się najlepiej w tym tygodniu?"
                 />
-              </li>
+              </li> */}
             </ul>
           </li>
           <li>{loggedUser.getUser() ? logoutLink : loginLink}</li>

@@ -1,8 +1,9 @@
 import "./Input.css";
 import { IInput } from "./InputTypes";
 
-export const Input = ({ onChange, value, type, placeholder, name }: IInput) => {
+export const Input = ({ onChange, value, type, placeholder, name, children }: IInput) => {
   return (
+    <label>
     <input
       onChange={onChange}
       value={value}
@@ -11,5 +12,7 @@ export const Input = ({ onChange, value, type, placeholder, name }: IInput) => {
       name={name}
       className='input clickable'
     />
+    {children}
+    </label>
   );
 };

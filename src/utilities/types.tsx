@@ -22,6 +22,12 @@ export interface IFirebaseReturn {
   code: string;
 }
 
+export interface IUsersListReturn {
+  data: IUserToSave[];
+  error: boolean;
+  code: string;
+}
+
 export interface IUserReturn {
   user: User | null;
   error: boolean;

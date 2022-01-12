@@ -12,6 +12,7 @@ import {
   IFirebaseReturn,
   ILoginParameters,
   IUserReturn,
+  IUsersListReturn,
   IUserToSave,
 } from "./types";
 import { noErrorDataObject, noErrorUserObject } from "./constants";
@@ -35,17 +36,14 @@ export const handleLogin = async ({
   try {
     await signInWithEmailAndPassword(auth, email, password);
     const user = auth.currentUser;
-    // const users = await getFromFirebase(EDataTypes.USERS);
+    const users = await getUsersListFromFirebase();
     if (user) {
-      const existingUsers = await getFromFirebase(EDataTypes.USERS);
-
       const { uid, displayName, photoURL } = user;
       if (
-        existingUsers.data.filter((el) => el.uid.toString() === uid).length < 1
+        users && users.data.filter((el) => el.uid.toString() === uid).length < 1
       ) {
         const userToSave = { uid, displayName, photoURL };
-        const userEffect = await postToFirebase(userToSave, EDataTypes.USERS);
-        console.log(userEffect);
+        await postToFirebase(userToSave, EDataTypes.USERS);
       } else {
         console.log('already in db')
       }
@@ -103,5 +101,19 @@ export const getFromFirebase = async (
     });
   } catch (err) {
     return handleDataError(err);
+  }
+};
+
+export const getUsersListFromFirebase = async (): Promise<IUsersListReturn | undefined> => {
+  try {
+    const dataRef = ref(db);
+    return get(child(dataRef, 'users')).then((snapshot) => {
+      if (snapshot) {
+        const data = snapshot.val();
+        return { ...noErrorDataObject, data: Object.values(data) };
+      } else return {data: [], error: true, code: 'userListError'};
+    });
+  } catch (err) {
+    // return handleDataError(err);
   }
 };
