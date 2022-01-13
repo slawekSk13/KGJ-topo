@@ -16,11 +16,12 @@ export const Login = observer(() => {
     if (loginEffect.error) {
       appError.setCode(loginEffect.code);
       loading.clearLoading();
+      console.log(loginEffect.error)
       // add info for user if login was unsuccesfull
     } else if (loginEffect.user) {
       loggedUser.setUser(loginEffect.user);
       boulder.setAuthor(loginEffect.user.uid);
-      changeLocation('old/');
+      changeLocation('profile');
       loading.clearLoading();
     }
   };

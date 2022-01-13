@@ -18,3 +18,8 @@ body {
 .clickable {
   cursor: pointer;
 }
+
+.user-avatar {
+  border-radius: 50%;
+  max-width: 150px;
+}

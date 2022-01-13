@@ -20,6 +20,9 @@ export class LoggedUser {
     return this.user?.displayName || "";
   }
   getUserUid() {
-    return this.user?.uid || '';
+    return this.user?.uid || "";
+  }
+  getUserImage() {
+    return this.user?.photoURL;
   }
 }

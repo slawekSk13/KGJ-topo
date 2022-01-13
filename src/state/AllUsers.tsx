@@ -16,6 +16,9 @@ export class AllUsers {
   setUserDisplayName(uid: string, name: string) {
     this.getUser(uid).displayName = name;
   }
+  getUserPhotoURL(uid: string) {
+    return this.getUsers().length > 0 ? this.getUser(uid).photoURL : '/logo512.png';
+}
   getUsers() {
       return this.users;
   }

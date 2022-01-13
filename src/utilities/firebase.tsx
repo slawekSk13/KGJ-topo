@@ -38,14 +38,26 @@ export const handleLogin = async ({
     const user = auth.currentUser;
     const users = await getUsersListFromFirebase();
     if (user) {
-      const { uid, displayName, photoURL } = user;
+      const { uid, displayName, photoURL, email } = user;
+      let userShortenedEmail: string = "";
+      if (email) {
+        userShortenedEmail =
+          email?.split("@")[0].length > email?.split(".")[0].length
+            ? email?.split(".")[0]
+            : email?.split("@")[0];
+      }
       if (
-        users && users.data.filter((el) => el.uid.toString() === uid).length < 1
+        users &&
+        users.data.filter((el) => el.uid.toString() === uid).length < 1
       ) {
-        const userToSave = { uid, displayName, photoURL };
+        const userToSave = {
+          uid,
+          displayName: displayName || userShortenedEmail,
+          photoURL: photoURL || "%PUBLIC_URL%/logo512.png",
+        };
         await postToFirebase(userToSave, EDataTypes.USERS);
       } else {
-        console.log('already in db')
+        console.log("already in db");
       }
     }
     return { ...noErrorUserObject, user: user };
@@ -82,18 +94,17 @@ export const postToFirebase = async (
     if (dataToSave) {
       await set(ref(db, `${dataType}/${dataToSave.uid}`), dataToSave);
     }
-    return {...noErrorDataObject};
+    return { ...noErrorDataObject };
   } catch (err) {
-    console.log(err)
+    console.log(err);
     return handleDataError(err);
   }
 };
 
-export const getBouldersFromFirebase = async (
-): Promise<IFirebaseReturn> => {
+export const getBouldersFromFirebase = async (): Promise<IFirebaseReturn> => {
   try {
     const dataRef = ref(db);
-    return get(child(dataRef, 'boulders')).then((snapshot) => {
+    return get(child(dataRef, "boulders")).then((snapshot) => {
       if (snapshot) {
         const data = snapshot.val();
         return { ...noErrorDataObject, data: Object.values<Boulder>(data) };
@@ -104,14 +115,16 @@ export const getBouldersFromFirebase = async (
   }
 };
 
-export const getUsersListFromFirebase = async (): Promise<IUsersListReturn | undefined> => {
+export const getUsersListFromFirebase = async (): Promise<
+  IUsersListReturn | undefined
+> => {
   try {
     const dataRef = ref(db);
-    return get(child(dataRef, 'users')).then((snapshot) => {
+    return get(child(dataRef, "users")).then((snapshot) => {
       if (snapshot) {
         const data = snapshot.val();
-        return { ...noErrorDataObject, data: Object.values(data) };
-      } else return {data: [], error: true, code: 'userListError'};
+        return data ? { ...noErrorDataObject, data: Object.values(data) } : { ...noErrorDataObject, data: []};
+      } else return { data: [], error: true, code: "userListError" };
     });
   } catch (err) {
     // return handleDataError(err);
