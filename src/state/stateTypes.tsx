@@ -4,7 +4,7 @@ import { HistoricalBoulders } from "./HistoricalBoulders";
 import { HoldState } from "./HoldState";
 import { Loading } from "./Loading";
 import { LoggedUser } from "./LoggedUser";
-import { Boulder } from "./Problem";
+import { Boulder } from "./Boulder";
 
 export type EGrade = 0 | 1 | 2 | 3 | 4 | 5;
 

@@ -3,7 +3,7 @@ import { AppError } from "./AppError";
 import { HistoricalBoulders } from "./HistoricalBoulders";
 import { HoldState } from "./HoldState";
 import { LoggedUser } from "./LoggedUser";
-import { Boulder } from "./Problem";
+import { Boulder } from "./Boulder";
 import { Loading } from "./Loading";
 
 export const boulder = new Boulder();

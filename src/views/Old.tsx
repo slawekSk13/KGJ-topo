@@ -1,11 +1,10 @@
-import { getFromFirebase } from "../utilities/firebase";
+import { getBouldersFromFirebase } from "../utilities/firebase";
 import { HoldsMap } from "../components/HoldsMap/HoldsMap";
 import { useContext, useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import { StateContext } from "../state/context";
 import { OldHeader } from "../components/OldHeader/OldHeader";
 import { FilterBar } from "../components/FilterBar/FilterBar";
-import { EDataTypes } from "../utilities/types";
 
 export const Old = observer(() => {
   const { appError, historicalBoulders } =
@@ -13,7 +12,7 @@ export const Old = observer(() => {
 
   const loadData = async () => {
     try {
-      const { code, data, error } = await getFromFirebase(EDataTypes.BOULDERS);
+      const { code, data, error } = await getBouldersFromFirebase();
       historicalBoulders.setBoulders(data);
       appError.removeCode("connection");
       error && appError.setCode(code);
@@ -35,7 +34,6 @@ export const Old = observer(() => {
       ) : (
         <>
           <OldHeader />
-         
           <HoldsMap boulder={historicalBoulders.getCurrentBoulder()} />
         </>
       )}

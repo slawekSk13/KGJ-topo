@@ -1,5 +1,7 @@
-import { Boulder } from "../state/Problem";
+import { Boulder } from "../state/Boulder";
 import { User } from "firebase/auth";
+import { HoldState } from "../state/HoldState";
+import { AppError } from "../state/AppError";
 
 export interface IConst {
   sizeX: number;
@@ -15,6 +17,7 @@ export interface IElementSize {
 }
 
 export type voidFunc = () => void;
+export type TResetNewBoulder = (boulder: Boulder, currentHold: HoldState, appError: AppError) => void;
 
 export interface IFirebaseReturn {
   data: Boulder[];

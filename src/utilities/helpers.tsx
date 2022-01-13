@@ -1,7 +1,13 @@
-import { IConst, IElementSize } from "./types";
+import { EDataTypes, IConst, IElementSize, TResetNewBoulder } from "./types";
 import { constants } from "./constants";
 import { EHoldTypes, IHold } from "../components/Hold/HoldTypes";
 import { IClick } from "../components/AddNewBoulder/AddNewBoulderTypes";
+import { appError } from "../state";
+import { Boulder } from "../state/Boulder";
+import { HoldState } from "../state/HoldState";
+import { AppError } from "../state/AppError";
+import { IValidateBoulderReturn } from "../components/Button/ButtonTypes";
+import { postToFirebase } from "./firebase";
 
 export const changeLocation = (newLocation?: string): void => {
   const adress = newLocation ? newLocation : "";
@@ -56,4 +62,47 @@ export const handleNewHold = (
   if (clickedHold?.holdType === newHold.holdType) {
     return [...filteredHolds];
   } else return [...filteredHolds, newHold];
+};
+
+export const resetNewBoulder: TResetNewBoulder = (
+  boulder: Boulder,
+  currentHold: HoldState,
+  appError: AppError
+) => {
+  boulder.setHolds([]);
+  boulder.setId();
+  boulder.setName("");
+  currentHold.setHold(EHoldTypes.START);
+  appError.clearCode();
+};
+
+export const validateBoulder = (boulder: Boulder): IValidateBoulderReturn => {
+  const nameNotValid = boulder.getName() === "";
+  const holds = boulder.getHolds();
+  const startsCount = holds.filter(
+    (el) => el.holdType === EHoldTypes.START
+  ).length;
+  const topCount = holds.filter((el) => el.holdType === EHoldTypes.TOP).length;
+  const holdsNotValid = startsCount > 2 || startsCount < 1 || topCount !== 1;
+  return { nameNotValid, holdsNotValid };
+};
+
+export const saveBoulder = async (
+  boulder: Boulder,
+  currentHold: HoldState,
+  appError: AppError
+) => {
+  const { nameNotValid, holdsNotValid } = validateBoulder(boulder);
+  if (nameNotValid) {
+    appError.setCode("noname");
+  }
+  if (holdsNotValid) {
+    appError.setCode("holds");
+  } else {
+    const saveStatus = await postToFirebase(boulder, EDataTypes.BOULDERS);
+    saveStatus.error
+      ? appError.setCode(saveStatus.code)
+      : resetNewBoulder(boulder, currentHold, appError);
+    //przejście do logowania dla niezalogowanych
+  }
 };

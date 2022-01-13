@@ -1,5 +1,5 @@
 import { makeObservable, observable, action } from "mobx";
-import { Boulder } from "./Problem";
+import { Boulder } from "./Boulder";
 import { IDoneBy, EGrade } from "./stateTypes";
 
 export class HistoricalBoulders {

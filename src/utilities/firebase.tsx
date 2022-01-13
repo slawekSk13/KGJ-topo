@@ -16,7 +16,7 @@ import {
   IUserToSave,
 } from "./types";
 import { noErrorDataObject, noErrorUserObject } from "./constants";
-import { Boulder } from "../state/Problem";
+import { Boulder } from "../state/Boulder";
 
 initializeApp(firebaseConfig);
 const db = getDatabase();
@@ -82,18 +82,17 @@ export const postToFirebase = async (
     if (dataToSave) {
       await set(ref(db, `${dataType}/${dataToSave.uid}`), dataToSave);
     }
-    return getFromFirebase(dataType);
+    return {...noErrorDataObject};
   } catch (err) {
     return handleDataError(err);
   }
 };
 
-export const getFromFirebase = async (
-  dataType: EDataTypes
+export const getBouldersFromFirebase = async (
 ): Promise<IFirebaseReturn> => {
   try {
     const dataRef = ref(db);
-    return get(child(dataRef, dataType)).then((snapshot) => {
+    return get(child(dataRef, 'boulders')).then((snapshot) => {
       if (snapshot) {
         const data = snapshot.val();
         return { ...noErrorDataObject, data: Object.values<Boulder>(data) };

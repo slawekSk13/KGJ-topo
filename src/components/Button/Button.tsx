@@ -1,37 +1,27 @@
 import "./Button.css";
 import {
   EButtonTypes,
-  IButtonType,
-  IValidateBoulderReturn,
+  IButtonType
 } from "./ButtonTypes";
 
 import { ReactElement } from "react";
-import { postToFirebase } from "../../utilities/firebase";
 
 import { useContext } from "react";
 import { StateContext } from "../../state/context";
 import { observer } from "mobx-react-lite";
 import { EHoldTypes } from "../Hold/HoldTypes";
-import { EDataTypes } from "../../utilities/types";
+import { resetNewBoulder, saveBoulder } from "../../utilities/helpers";
 
 export const Button = observer(({ name, label }: IButtonType): ReactElement => {
   const { boulder, currentHold, appError } = useContext(StateContext);
 
-  const reset = (): void => {
-    boulder.setHolds([]);
-    boulder.setId();
-    boulder.setName("");
-    currentHold?.setHold(EHoldTypes.START);
-    appError.clearCode();
-  };
-
   const handleButtonClick = (name: EButtonTypes | EHoldTypes) => {
     switch (name) {
       case EButtonTypes.RESET:
-        reset();
+        resetNewBoulder(boulder, currentHold, appError);
         break;
       case EButtonTypes.SAVE:
-        save();
+        saveBoulder(boulder, currentHold, appError);
         break;
       default:
         handleHoldTypeChange(name);
@@ -40,33 +30,6 @@ export const Button = observer(({ name, label }: IButtonType): ReactElement => {
 
   const isDisabled = (): boolean => {
     return name === currentHold.getHold();
-  };
-
-  const validateBoulder = (): IValidateBoulderReturn => {
-    const nameNotValid = boulder.getName() === "";
-    const holds = boulder.getHolds();
-    const startsCount = holds.filter(
-      (el) => el.holdType === EHoldTypes.START
-    ).length;
-    const topCount = holds.filter(
-      (el) => el.holdType === EHoldTypes.TOP
-    ).length;
-    const holdsNotValid = startsCount > 2 || startsCount < 1 || topCount !== 1;
-    return { nameNotValid, holdsNotValid };
-  };
-
-  const save = async () => {
-    const { nameNotValid, holdsNotValid } = validateBoulder();
-    if (nameNotValid) {
-      appError.setCode("noname");
-    }
-    if (holdsNotValid) {
-      appError.setCode("holds");
-    } else {
-      const saveStatus = await postToFirebase(boulder, EDataTypes.BOULDERS);
-      saveStatus.error ? appError.setCode(saveStatus.code) : reset();
-      //przejście do logowania dla niezalogowanych
-    }
   };
 
   const handleHoldTypeChange = (name: EHoldTypes): void =>
