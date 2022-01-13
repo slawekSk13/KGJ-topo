@@ -84,6 +84,7 @@ export const postToFirebase = async (
     }
     return {...noErrorDataObject};
   } catch (err) {
+    console.log(err)
     return handleDataError(err);
   }
 };

@@ -87,11 +87,7 @@ export const validateBoulder = (boulder: Boulder): IValidateBoulderReturn => {
   return { nameNotValid, holdsNotValid };
 };
 
-export const saveBoulder = async (
-  boulder: Boulder,
-  currentHold: HoldState,
-  appError: AppError
-) => {
+export const saveBoulder = async (boulder: Boulder, appError: AppError) => {
   const { nameNotValid, holdsNotValid } = validateBoulder(boulder);
   if (nameNotValid) {
     appError.setCode("noname");
@@ -100,9 +96,9 @@ export const saveBoulder = async (
     appError.setCode("holds");
   } else {
     const saveStatus = await postToFirebase(boulder, EDataTypes.BOULDERS);
-    saveStatus.error
-      ? appError.setCode(saveStatus.code)
-      : resetNewBoulder(boulder, currentHold, appError);
+    console.log(saveStatus);
+    saveStatus.error && appError.setCode(saveStatus.code);
+
     //przejście do logowania dla niezalogowanych
   }
 };

@@ -33,7 +33,7 @@ export const Old = observer(() => {
         <div>Nie ma internetów</div>
       ) : (
         <>
-          <OldHeader />
+          <OldHeader loadData={loadData} />
           <HoldsMap boulder={historicalBoulders.getCurrentBoulder()} />
         </>
       )}

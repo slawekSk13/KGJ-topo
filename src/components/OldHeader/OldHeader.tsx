@@ -3,13 +3,22 @@ import { useContext } from "react";
 import { StateContext } from "../../state/context";
 import { observer } from "mobx-react-lite";
 import { TooltipText } from "../TooltipText/TooltipText";
+import { saveBoulder } from "../../utilities/helpers";
 
-export const OldHeader = observer(() => {
-  const { historicalBoulders, loggedUser, allUsers } = useContext(StateContext);
-  const handleUpgrade = () => {
-    loggedUser.user
-      ? historicalBoulders.currentBoulder.addAscent(loggedUser.user)
-      : alert("not logged in");
+export const OldHeader = observer(({loadData}: {loadData: Function}) => {
+  const { historicalBoulders, loggedUser, allUsers, appError } =
+    useContext(StateContext);
+  const handleUpgrade = async () => {
+    if (loggedUser.user) {
+      historicalBoulders.currentBoulder.addAscent(loggedUser.user);
+      await saveBoulder(
+        historicalBoulders.currentBoulder,
+        appError
+      );
+      loadData();
+    } else {
+      alert("not logged in");
+    }
   };
   return (
     <>
@@ -24,8 +33,10 @@ export const OldHeader = observer(() => {
           {`${historicalBoulders.currentBoulder.getName()} - ${historicalBoulders.currentBoulder.getGrade()}`}
           <TooltipText
             className={`tooltip-text__bottom`}
-            text={`Autor: ${allUsers.getUserDisplayName(historicalBoulders.currentBoulder.getAuthor())}, ${
-              (!(historicalBoulders.currentBoulder.getAscents().length > 0))
+            text={`Autor: ${allUsers.getUserDisplayName(
+              historicalBoulders.currentBoulder.getAuthor()
+            )}, ${
+              !(historicalBoulders.currentBoulder.getAscents().length > 0)
                 ? "bez przejść"
                 : "zrobili: " +
                   historicalBoulders.currentBoulder

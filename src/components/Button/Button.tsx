@@ -21,7 +21,8 @@ export const Button = observer(({ name, label }: IButtonType): ReactElement => {
         resetNewBoulder(boulder, currentHold, appError);
         break;
       case EButtonTypes.SAVE:
-        saveBoulder(boulder, currentHold, appError);
+        saveBoulder(boulder, appError);
+        resetNewBoulder(boulder, currentHold, appError);
         break;
       default:
         handleHoldTypeChange(name);
