@@ -23,6 +23,7 @@ export const App = observer(() => {
           <Route path="/old" element={<Old />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/loading" element={<Loading />} />
         </Routes> }
       </Main>
     </HashRouter>
