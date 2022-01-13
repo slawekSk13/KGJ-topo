@@ -23,3 +23,7 @@ body {
   border-radius: 50%;
   max-width: 150px;
 }
+
+.invisible {
+  opacity: 0;
+}

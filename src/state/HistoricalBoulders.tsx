@@ -1,7 +1,6 @@
 import { User } from "@firebase/auth";
 import { makeObservable, observable, action } from "mobx";
 import { Boulder } from "./Boulder";
-import { IDoneBy, EGrade } from "./stateTypes";
 
 export class HistoricalBoulders {
     boulders: Boulder[];

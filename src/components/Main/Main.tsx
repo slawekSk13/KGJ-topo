@@ -5,14 +5,16 @@ import { getUsersListFromFirebase } from "../../utilities/firebase";
 import "./Main.css";
 import { IMainProps } from "./MainTypes";
 export const Main = observer(({ children }: IMainProps) => {
-  const { allUsers } = useContext(StateContext);
+  const { allUsers, loading } = useContext(StateContext);
   const loadAllUSers = async () => {
+    // loading.setLoading();
     const usersList = await getUsersListFromFirebase();
     usersList && allUsers.setUsers(usersList.data);
+    // loading.clearLoading();
 
-//add error handling
+    //add error handling
   };
-  window.addEventListener('load', loadAllUSers)
+  window.addEventListener("load", loadAllUSers);
   return (
     <main className="main" id="main">
       {children}

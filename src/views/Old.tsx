@@ -7,8 +7,7 @@ import { OldHeader } from "../components/OldHeader/OldHeader";
 import { FilterBar } from "../components/FilterBar/FilterBar";
 
 export const Old = observer(() => {
-  const { appError, historicalBoulders } =
-    useContext(StateContext);
+  const { appError, historicalBoulders} = useContext(StateContext);
 
   const loadData = async () => {
     try {

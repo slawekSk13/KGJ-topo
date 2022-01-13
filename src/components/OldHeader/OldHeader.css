@@ -5,8 +5,8 @@
 .boulder-name {
   font-size: 1.7rem;
   text-transform: uppercase;
-  margin: 0.5rem 0;
-  padding: .5rem 0;
+  margin: 0.5rem 0 0;
+  padding: .5rem 0 0;
   color: var(--fontColorMenu);
   display: inline-block;
 }
