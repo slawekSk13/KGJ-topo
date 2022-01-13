@@ -13,6 +13,9 @@ export class AllUsers {
   getUserDisplayName(uid: string) {
       return this.getUsers().length > 0 ? this.getUser(uid).displayName : 'poczekaj...';
   }
+  setUserDisplayName(uid: string, name: string) {
+    this.getUser(uid).displayName = name;
+  }
   getUsers() {
       return this.users;
   }

@@ -2,6 +2,7 @@ import { AllUsers } from "./AllUsers";
 import { AppError } from "./AppError";
 import { HistoricalBoulders } from "./HistoricalBoulders";
 import { HoldState } from "./HoldState";
+import { Loading } from "./Loading";
 import { LoggedUser } from "./LoggedUser";
 import { Boulder } from "./Problem";
 
@@ -13,15 +14,16 @@ export enum EBoulderType {
 }
 
 export interface IStateProps {
-    boulder: Boulder;
-    historicalBoulders: HistoricalBoulders;
-    currentHold: HoldState;
-    appError: AppError;
-    loggedUser: LoggedUser;
-    allUsers: AllUsers;
-  }
+  boulder: Boulder;
+  historicalBoulders: HistoricalBoulders;
+  currentHold: HoldState;
+  appError: AppError;
+  loggedUser: LoggedUser;
+  allUsers: AllUsers;
+  loading: Loading;
+}
 
-  export interface IDoneBy {
-    userUid: string;
-    date: number;
-  }
+export interface IDoneBy {
+  userUid: string;
+  date: number;
+}

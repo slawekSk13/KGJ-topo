@@ -8,6 +8,7 @@ import {
   boulder,
   currentHold,
   historicalBoulders,
+  loading,
   loggedUser,
 } from "./state";
 
@@ -20,7 +21,8 @@ render(
       currentHold,
       appError,
       loggedUser,
-      allUsers
+      allUsers,
+      loading
     }}
   >
     <App />

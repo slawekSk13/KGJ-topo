@@ -19,4 +19,7 @@ export class LoggedUser {
   getUserDisplayName() {
     return this.user?.displayName || "";
   }
+  getUserUid() {
+    return this.user?.uid || '';
+  }
 }

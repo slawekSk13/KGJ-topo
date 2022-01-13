@@ -1,20 +1,21 @@
 import { observer } from "mobx-react-lite";
 import { useContext, useState } from "react";
+import { CustomLink } from "../components/CustomLink/CustomLink";
 import { Input } from "../components/Input/Input";
 import { EInputTypes } from "../components/Input/InputTypes";
 import { StateContext } from "../state/context";
 
 export const Profile = observer(() => {
-  const { loggedUser } = useContext(StateContext);
-  const [displayName, setDisplayName] = useState<string>(loggedUser.getUserDisplayName());
+  const { loggedUser, allUsers } = useContext(StateContext);
+  const displayName = loggedUser.user ? allUsers.getUserDisplayName(loggedUser.getUserUid()) : '';
   return (
-    <Input
-      onChange={(e) => setDisplayName(e.target.value)}
-      value={displayName}
-      type={EInputTypes.EMAIL}
-      placeholder={"jak się nazywasz?"}
-      name={"displayName"}
-    ></Input>
+   loggedUser.user ?  <><Input
+   onChange={(e) => allUsers.setUserDisplayName(loggedUser.getUserUid(), e.target.value)}
+   value={displayName ? displayName : ''}
+   type={EInputTypes.EMAIL}
+   placeholder={"jak się nazywasz?"}
+   name={"displayName"}
+ ></Input></> : <CustomLink to="/login">Zaloguj się</CustomLink>
   );
 });
 

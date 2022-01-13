@@ -1,5 +1,13 @@
 import { createContext } from "react";
-import { appError, boulder, historicalBoulders, currentHold, loggedUser, allUsers } from "../state";
+import {
+  appError,
+  boulder,
+  historicalBoulders,
+  currentHold,
+  loggedUser,
+  allUsers,
+  loading,
+} from "../state";
 import { IStateProps } from "./stateTypes";
 export const StateContext = createContext<IStateProps>({
   boulder,
@@ -7,5 +15,6 @@ export const StateContext = createContext<IStateProps>({
   currentHold,
   appError,
   loggedUser,
-  allUsers
+  allUsers,
+  loading,
 });

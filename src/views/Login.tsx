@@ -7,18 +7,21 @@ import { handleLogin } from "../utilities/firebase";
 import { changeLocation } from "../utilities/helpers";
 
 export const Login = observer(() => {
-  const { boulder, loggedUser, appError, allUsers } = useContext(StateContext);
+  const { boulder, loggedUser, appError, allUsers, loading } = useContext(StateContext);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const handleClick = async (): Promise<void> => {
+    loading.setLoading();
     const loginEffect = await handleLogin({ email, password });
     if (loginEffect.error) {
       appError.setCode(loginEffect.code);
+      loading.clearLoading();
       // add info for user if login was unsuccesfull
     } else if (loginEffect.user) {
       loggedUser.setUser(loginEffect.user);
       boulder.setAuthor(loginEffect.user.uid);
       changeLocation('old/');
+      loading.clearLoading();
     }
   };
   return (

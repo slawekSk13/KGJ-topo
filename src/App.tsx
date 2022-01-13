@@ -7,19 +7,24 @@ import { Login } from "./views/Login";
 
 import { Main } from "./components/Main/Main";
 import { Profile } from "./views/Profile";
+import { Loading } from "./views/Loading/Loading";
+import { observer } from "mobx-react-lite";
+import { useContext } from "react";
+import { StateContext } from "./state/context";
 
-export const App = () => {
+export const App = observer(() => {
+  const {loading} = useContext(StateContext);
   return (
     <HashRouter>
       <Menu />
       <Main>
-        <Routes>
+        {loading.getLoading() ? <Loading /> : <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/old" element={<Old />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login />} />
-        </Routes>
+        </Routes> }
       </Main>
     </HashRouter>
   );
-};
+});

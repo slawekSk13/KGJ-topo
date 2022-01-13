@@ -11,7 +11,6 @@ export const OldHeader = observer(() => {
       ? historicalBoulders.currentBoulder.addAscent(loggedUser.user)
       : alert("not logged in");
   };
-  
   return (
     <>
       <h1 className="boulder-name">
