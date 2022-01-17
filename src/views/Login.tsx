@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { Input } from "../components/Input/Input";
 import { EInputTypes } from "../components/Input/InputTypes";
 import { StateContext } from "../state/context";
-import { handleLogin } from "../utilities/firebase";
+import { handleLogin } from "../utilities/firebase/firebaseAuth";
 import { changeLocation } from "../utilities/helpers";
 
 export const Login = observer(() => {

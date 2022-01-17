@@ -1,10 +1,10 @@
-import { getBouldersFromFirebase } from "../utilities/firebase";
 import { HoldsMap } from "../components/HoldsMap/HoldsMap";
 import { useContext, useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import { StateContext } from "../state/context";
 import { OldHeader } from "../components/OldHeader/OldHeader";
 import { FilterBar } from "../components/FilterBar/FilterBar";
+import { getBouldersFromFirebase } from "../utilities/firebase/firebaseDB";
 
 export const Old = observer(() => {
   const { appError, historicalBoulders} = useContext(StateContext);

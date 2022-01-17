@@ -2,12 +2,11 @@ import { EDataTypes, IConst, IElementSize, TResetNewBoulder } from "./types";
 import { constants } from "./constants";
 import { EHoldTypes, IHold } from "../components/Hold/HoldTypes";
 import { IClick } from "../components/AddNewBoulder/AddNewBoulderTypes";
-import { appError } from "../state";
 import { Boulder } from "../state/Boulder";
 import { HoldState } from "../state/HoldState";
 import { AppError } from "../state/AppError";
 import { IValidateBoulderReturn } from "../components/Button/ButtonTypes";
-import { postToFirebase } from "./firebase";
+import { postToFirebase } from "./firebase/firebaseDB";
 
 export const changeLocation = (newLocation?: string): void => {
   const adress = newLocation ? newLocation : "";

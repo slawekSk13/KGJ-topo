@@ -5,7 +5,7 @@ import { ImageInput } from "../components/ImageInput/ImageInput";
 import { Input } from "../components/Input/Input";
 import { EInputTypes } from "../components/Input/InputTypes";
 import { StateContext } from "../state/context";
-import { updateUserProfile, uploadProfileImage } from "../utilities/firebase";
+import { updateUserProfile, uploadProfileImage } from "../utilities/firebase/firebaseStorage";
 import { changeLocation } from "../utilities/helpers";
 
 export const Profile = observer(() => {

@@ -6,7 +6,7 @@ import { ESide } from "../../components/MenuWrapper/MenuWrapperTypes";
 import { useContext } from "react";
 import { StateContext } from "../../state/context";
 import { observer } from "mobx-react-lite";
-import { handleLogout } from "../../utilities/firebase";
+import { handleLogout } from "../../utilities/firebase/firebaseAuth";
 
 export const Menu = observer(() => {
   const { loggedUser } = useContext(StateContext);
