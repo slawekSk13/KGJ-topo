@@ -51,6 +51,7 @@ loggedUser.clearUser();
         <ul className="menu-list">
           <li>
             <ul>
+              <li><img src='/logo512.png' className='logo' alt='Pająk Stefan wita!' /></li>
               <li>
                 <CustomLink to="/">Nowy</CustomLink>
                 <TooltipText

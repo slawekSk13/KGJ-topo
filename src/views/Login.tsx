@@ -7,7 +7,7 @@ import { handleLogin } from "../utilities/firebase/firebaseAuth";
 import { changeLocation } from "../utilities/helpers";
 
 export const Login = observer(() => {
-  const { boulder, loggedUser, appError, allUsers, loading } = useContext(StateContext);
+  const { boulder, loggedUser, appError, loading } = useContext(StateContext);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const handleClick = async (): Promise<void> => {
@@ -21,7 +21,7 @@ export const Login = observer(() => {
     } else if (loginEffect.user) {
       loggedUser.setUser(loginEffect.user);
       boulder.setAuthor(loginEffect.user.uid);
-      changeLocation('profile');
+      changeLocation('old');
       loading.clearLoading();
     }
   };

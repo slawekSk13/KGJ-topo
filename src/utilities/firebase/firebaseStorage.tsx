@@ -1,7 +1,7 @@
 import { updateProfile } from "firebase/auth";
 import {
     getDownloadURL,
-    ref as storageRef,
+    ref,
     uploadBytes,
   } from "firebase/storage";
 import { IUserToSave, EDataTypes } from "../types";
@@ -12,7 +12,7 @@ import { auth, storage } from "./firebaseInit";
   export const uploadProfileImage = async (file: File, userUid: string) => {
     try {
       const fileExtension = file.name.split(".");
-      const profilePictureRef = storageRef(
+      const profilePictureRef = ref(
         storage,
         `profileImages/${userUid}.${fileExtension[fileExtension.length - 1]}`
       );
@@ -20,7 +20,7 @@ import { auth, storage } from "./firebaseInit";
         console.log(snapshot)
       );
       return await getDownloadURL(
-        storageRef(
+        ref(
           storage,
           `profileImages/${userUid}.${fileExtension[fileExtension.length - 1]}`
         )
