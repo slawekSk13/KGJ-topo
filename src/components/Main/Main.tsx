@@ -7,12 +7,15 @@ import { IMainProps } from "./MainTypes";
 export const Main = observer(({ children }: IMainProps) => {
   const { allUsers, loading } = useContext(StateContext);
   const loadAllUSers = async () => {
-    // loading.setLoading();
-    const usersList = await getUsersListFromFirebase();
-    usersList && allUsers.setUsers(usersList.data);
-    // loading.clearLoading();
-
-    //add error handling
+    loading.setLoading();
+    try {
+      const usersList = await getUsersListFromFirebase();
+      usersList && allUsers.setUsers(usersList.data);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      loading.clearLoading();
+    }
   };
   window.addEventListener("load", loadAllUSers);
   return (

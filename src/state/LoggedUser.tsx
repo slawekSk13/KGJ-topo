@@ -23,6 +23,6 @@ export class LoggedUser {
     return this.user?.uid || "";
   }
   getUserImage() {
-    return this.user?.photoURL;
+    return this.user?.photoURL || '';
   }
 }

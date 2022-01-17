@@ -22,7 +22,7 @@ render(
       appError,
       loggedUser,
       allUsers,
-      loading
+      loading,
     }}
   >
     <App />
