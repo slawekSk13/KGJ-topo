@@ -11,6 +11,7 @@ import { Loading } from "./views/Loading/Loading";
 import { observer } from "mobx-react-lite";
 import { useContext } from "react";
 import { StateContext } from "./state/context";
+import { ResetPassword } from "./views/ResetPassword";
 
 export const App = observer(() => {
   const {loading} = useContext(StateContext);
@@ -24,6 +25,7 @@ export const App = observer(() => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login />} />
           <Route path="/loading" element={<Loading />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
         </Routes> }
       </Main>
     </HashRouter>

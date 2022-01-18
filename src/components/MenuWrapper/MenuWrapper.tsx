@@ -23,13 +23,20 @@ export const MenuWrapper = ({ children, side }: IMenuWrapperProps) => {
     setHeight(height);
   };
 
-  useEffect(handleHeight, [active]);
+  const escapeListener = (e: KeyboardEvent) => {
+    e.key === "Escape" && setActive(false);
+  }
+
+  useEffect(() => {
+    handleHeight();
+    return () => {
+      window.removeEventListener("resize", handleHeight);
+      document.removeEventListener("keydown", escapeListener);
+    };
+  }, [active]);
 
   window.addEventListener("resize", handleHeight);
-
-  document.addEventListener("keydown", (e) => {
-    e.key === "Escape" && setActive(false);
-  });
+  document.addEventListener("keydown", escapeListener);
   return (
     <>
       <nav
@@ -54,12 +61,11 @@ export const MenuWrapper = ({ children, side }: IMenuWrapperProps) => {
         )}
         {children}
       </nav>
-        <div
-          onClick={handleClick}
-          className="menu-background"
-          style={{ height }}
-        />
-      
+      <div
+        onClick={handleClick}
+        className="menu-background"
+        style={{ height }}
+      />
     </>
   );
 };

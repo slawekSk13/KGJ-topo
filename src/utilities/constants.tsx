@@ -4,8 +4,8 @@ import { IConst, IFirebaseReturn, IUserReturn } from "./types";
 
 export const constants: IConst = {
   sizeX: 400,
-  sizeY: 300,
-  radius: 10
+  sizeY: 240,
+  radius: 6
 };
 
 export const noErrorDataObject: IFirebaseReturn = {data: [], error: false, code: ''}

@@ -8,6 +8,8 @@ import { ReactElement } from "react";
 
 import { useContext } from "react";
 import { StateContext } from "../../state/context";
+
+import { HoldState } from "../../state/HoldState";
 import { observer } from "mobx-react-lite";
 import { EHoldTypes } from "../Hold/HoldTypes";
 import { resetNewBoulder, saveBoulder } from "../../utilities/helpers";
@@ -29,7 +31,7 @@ export const Button = observer(({ name, label }: IButtonType): ReactElement => {
     }
   };
 
-  const isDisabled = (): boolean => {
+  const isDisabled = (currentHold: HoldState): boolean => {
     return name === currentHold.getHold();
   };
 
@@ -38,7 +40,7 @@ export const Button = observer(({ name, label }: IButtonType): ReactElement => {
 
   return (
     <button
-      disabled={isDisabled()}
+      disabled={isDisabled(currentHold)}
       className={`button button__${name}`}
       onClick={() => handleButtonClick(name)}
     >

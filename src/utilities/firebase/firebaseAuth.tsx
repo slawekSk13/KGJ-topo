@@ -60,7 +60,7 @@ import { updateUserProfile } from "./firebaseStorage";
     email: string
   ): Promise<IUserReturn> => {
     try {
-      sendPasswordResetEmail(auth, email);
+      await sendPasswordResetEmail(auth, email);
       return noErrorUserObject;
     } catch (err) {
       return handleUserError(err);
