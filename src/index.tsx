@@ -10,6 +10,7 @@ import {
   historicalBoulders,
   loading,
   loggedUser,
+  maps,
 } from "./state";
 
 const rootElement = document.getElementById("root");
@@ -23,6 +24,7 @@ render(
       loggedUser,
       allUsers,
       loading,
+      maps,
     }}
   >
     <App />

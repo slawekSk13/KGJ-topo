@@ -7,6 +7,7 @@ import {
   loggedUser,
   allUsers,
   loading,
+  maps
 } from "../state";
 import { IStateProps } from "./stateTypes";
 export const StateContext = createContext<IStateProps>({
@@ -17,4 +18,5 @@ export const StateContext = createContext<IStateProps>({
   loggedUser,
   allUsers,
   loading,
+  maps
 });

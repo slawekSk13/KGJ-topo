@@ -1,23 +1,27 @@
 import { observer } from "mobx-react-lite";
 import { useContext } from "react";
 import { StateContext } from "../../state/context";
-import { getUsersListFromFirebase } from "../../utilities/firebase/firebaseDB";
+import { getMapsListFromFirebase, getUsersListFromFirebase } from "../../utilities/firebase/firebaseDB";
 import "./Main.css";
 import { IMainProps } from "./MainTypes";
+import * as mobx from 'mobx'
 export const Main = observer(({ children }: IMainProps) => {
-  const { allUsers, loading } = useContext(StateContext);
-  const loadAllUSers = async () => {
+  const { allUsers, maps, loading } = useContext(StateContext);
+  const loadData = async () => {
     loading.setLoading();
     try {
       const usersList = await getUsersListFromFirebase();
+      const mapsList = await getMapsListFromFirebase();
       usersList && allUsers.setUsers(usersList.data);
+      mapsList && maps.setMaps(mapsList.data);
     } catch (err) {
       console.log(err);
     } finally {
       loading.clearLoading();
+      console.log(mobx.toJS(maps.getMap("20211017_210955").radius))
     }
   };
-  window.addEventListener("load", loadAllUSers);
+  window.addEventListener("load", loadData);
   return (
     <main className="main" id="main">
       {children}

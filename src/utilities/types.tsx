@@ -2,6 +2,7 @@ import { Boulder } from "../state/Boulder";
 import { User } from "firebase/auth";
 import { HoldState } from "../state/HoldState";
 import { AppError } from "../state/AppError";
+import { IMap } from "../state/stateTypes";
 
 export interface IConst {
   sizeX: number;
@@ -27,6 +28,12 @@ export interface IFirebaseReturn {
 
 export interface IUsersListReturn {
   data: IUserToSave[];
+  error: boolean;
+  code: string;
+}
+
+export interface IMapsListReturn {
+  data: IMap[];
   error: boolean;
   code: string;
 }

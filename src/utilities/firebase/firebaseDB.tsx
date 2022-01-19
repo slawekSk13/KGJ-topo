@@ -1,7 +1,7 @@
 import { ref, set, get, child } from "firebase/database";
 import { Boulder } from "../../state/Boulder";
 import { noErrorDataObject } from "../constants";
-import { IUserToSave, EDataTypes, IFirebaseReturn, IUsersListReturn } from "../types";
+import { IUserToSave, EDataTypes, IFirebaseReturn, IUsersListReturn, IMapsListReturn } from "../types";
 import { handleDataError } from "./firebaseErrorHandlers";
 import { db } from "./firebaseInit";
 
@@ -51,3 +51,21 @@ export const postToFirebase = async (
       // return handleDataError(err);
     }
   };
+
+  export const getMapsListFromFirebase = async (): Promise<
+  IMapsListReturn | undefined
+> => {
+  try {
+    const dataRef = ref(db);
+    return get(child(dataRef, "maps")).then((snapshot) => {
+      if (snapshot) {
+        const data = snapshot.val();
+        return data
+          ? { ...noErrorDataObject, data: Object.values(data) }
+          : { ...noErrorDataObject, data: [] };
+      } else return { data: [], error: true, code: "mapsListError" };
+    });
+  } catch (err) {
+    // return handleDataError(err);
+  }
+};
