@@ -72,6 +72,11 @@ export class Boulder {
   setType(type: EBoulderType) {
     this.type = type;
   }
+  switchType() {
+    this.getType() === EBoulderType.BOULDER
+      ? this.setType(EBoulderType.CIRCUIT)
+      : this.setType(EBoulderType.BOULDER);
+  }
   getType() {
     return this.type;
   }

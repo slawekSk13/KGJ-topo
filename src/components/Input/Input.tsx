@@ -3,7 +3,7 @@ import { IInput } from "./InputTypes";
 
 export const Input = ({ onChange, value, type, placeholder, name, children }: IInput) => {
   return (
-    <label>
+    <label className='text-input-label'>
     <input
       onChange={onChange}
       value={value}

@@ -11,4 +11,5 @@
     width: 1200px;
     box-shadow: 0 0 30px var(--shadowColor);
     overflow-x: hidden;
+    padding-top: 4rem;
   }
