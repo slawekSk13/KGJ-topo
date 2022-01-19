@@ -1,5 +1,4 @@
 import { EDataTypes, IConst, IElementSize, TResetNewBoulder } from "./types";
-import { constants } from "./constants";
 import { EHoldTypes, IHold } from "../components/Hold/HoldTypes";
 import { IClick } from "../components/AddNewBoulder/AddNewBoulderTypes";
 import { Boulder } from "../state/Boulder";
@@ -47,7 +46,8 @@ export const filterCondition = (
 export const handleNewHold = (
   e: IClick,
   holds: IHold[],
-  holdType: EHoldTypes
+  holdType: EHoldTypes,
+  constants: IConst
 ): IHold[] => {
   const newHold: IHold = generateNewHold(e, constants, holdType);
 

@@ -12,4 +12,5 @@ export interface IHold {
 export interface IHoldProps {
   boulderHold: IHold;
   index: number | false;
+  radius: number;
 }

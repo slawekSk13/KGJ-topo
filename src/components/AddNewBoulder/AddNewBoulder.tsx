@@ -9,11 +9,16 @@ import { observer } from "mobx-react-lite";
 import { AddNewBoulderMenu } from "../AddNewBoulderMenu/AddNewBoulderMenu";
 
 export const AddNewBoulder = observer((): ReactElement => {
-  const { boulder, currentHold } = useContext(StateContext);
+  const { boulder, currentHold, maps } = useContext(StateContext);
   const handleMapClick = (e: IClick): void => {
+    const { sizeX, sizeY, radius } = maps.getMap(boulder.getMap());
     currentHold &&
       boulder.setHolds(
-        handleNewHold(e, boulder.getHolds(), currentHold.getHold())
+        handleNewHold(e, boulder.getHolds(), currentHold.getHold(), {
+          sizeX,
+          sizeY,
+          radius,
+        })
       );
   };
 

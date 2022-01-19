@@ -4,7 +4,6 @@ import { StateContext } from "../../state/context";
 import { getMapsListFromFirebase, getUsersListFromFirebase } from "../../utilities/firebase/firebaseDB";
 import "./Main.css";
 import { IMainProps } from "./MainTypes";
-import * as mobx from 'mobx'
 export const Main = observer(({ children }: IMainProps) => {
   const { allUsers, maps, loading } = useContext(StateContext);
   const loadData = async () => {
@@ -18,7 +17,6 @@ export const Main = observer(({ children }: IMainProps) => {
       console.log(err);
     } finally {
       loading.clearLoading();
-      console.log(mobx.toJS(maps.getMap("20211017_210955").radius))
     }
   };
   window.addEventListener("load", loadData);

@@ -1,8 +1,7 @@
 import "./Hold.css";
 import { ReactElement } from "react";
-import { constants } from "../../utilities/constants";
 import { IHoldProps } from "./HoldTypes";
-export const Hold = ({ boulderHold, index }: IHoldProps): ReactElement => {
+export const Hold = ({ boulderHold, index, radius }: IHoldProps): ReactElement => {
   const { x, y, holdType } = boulderHold;
   return (
     <g>
@@ -10,7 +9,7 @@ export const Hold = ({ boulderHold, index }: IHoldProps): ReactElement => {
         className={`circle circle__${holdType}`}
         cx={x}
         cy={y}
-        r={constants.radius}
+        r={radius}
       />
       {index && (
         <text

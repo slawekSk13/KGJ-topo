@@ -2,12 +2,6 @@ import { EButtonTypes, IButtonType } from "../components/Button/ButtonTypes";
 import { EHoldTypes } from "../components/Hold/HoldTypes";
 import { IConst, IFirebaseReturn, IUserReturn } from "./types";
 
-export const constants: IConst = {
-  sizeX: 400,
-  sizeY: 240,
-  radius: 6
-};
-
 export const noErrorDataObject: IFirebaseReturn = {data: [], error: false, code: ''}
 export const noErrorUserObject: IUserReturn = {user: null, error: false, code: ''}
 
