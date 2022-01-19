@@ -11,6 +11,7 @@ export class Boulder {
   grade: EGrade;
   type: EBoulderType;
   doneBy: IDoneBy[];
+  mapUid: string;
   constructor() {
     makeObservable(this, {
       uid: observable,
@@ -27,6 +28,8 @@ export class Boulder {
       setType: action,
       doneBy: observable,
       addAscent: action,
+      mapUid: observable,
+      setMap: action,
     });
     this.uid = new Date().valueOf();
     this.boulderHolds = [];
@@ -35,6 +38,7 @@ export class Boulder {
     this.grade = 0;
     this.type = EBoulderType.BOULDER;
     this.doneBy = [];
+    this.mapUid = "20211017_210955";
   }
   setId(id?: number) {
     this.uid = id ? id : new Date().valueOf();
@@ -94,5 +98,11 @@ export class Boulder {
   }
   setGrade(grade: EGrade) {
     this.grade = grade;
+  }
+  setMap(mapUid: string) {
+    this.mapUid = mapUid;
+  }
+  getMap() {
+    return this.mapUid;
   }
 }

@@ -11,7 +11,7 @@
   list-style: none;
 }
 
-.menu .tooltip-text {
+.menu__left .tooltip-text {
   opacity: 0;
   display: none;
 }

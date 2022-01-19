@@ -97,7 +97,8 @@ export const saveBoulder = async (boulder: Boulder, appError: AppError) => {
     const saveStatus = await postToFirebase(boulder, EDataTypes.BOULDERS);
     console.log(saveStatus);
     saveStatus.error && appError.setCode(saveStatus.code);
-
+    return saveStatus;
     //przejście do logowania dla niezalogowanych
   }
+  return { error: true };
 };

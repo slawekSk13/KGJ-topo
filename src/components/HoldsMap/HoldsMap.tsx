@@ -11,7 +11,7 @@ export const HoldsMap = observer(
   ({ boulder, handleMapClick }: IHoldsMapProps) => {
     return (
       <svg
-        className="holds-map clickable"
+        className={handleMapClick ? "holds-map clickable" : "holds-map"}
         viewBox={`0 0 ${constants.sizeX} ${constants.sizeY}`}
         onClick={handleMapClick}
         id="holdsMap"

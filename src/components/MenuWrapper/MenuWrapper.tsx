@@ -25,7 +25,7 @@ export const MenuWrapper = ({ children, side }: IMenuWrapperProps) => {
 
   const escapeListener = (e: KeyboardEvent) => {
     e.key === "Escape" && setActive(false);
-  }
+  };
 
   useEffect(() => {
     handleHeight();
@@ -44,7 +44,7 @@ export const MenuWrapper = ({ children, side }: IMenuWrapperProps) => {
           active ? `menu menu__active menu__${side}` : `menu menu__${side}`
         }
         style={active ? { height } : undefined}
-        onClick={handleClick}
+        onClick={side === ESide.LEFT ? handleClick : undefined}
       >
         {side === ESide.LEFT ? (
           <FontAwesomeIcon
@@ -57,6 +57,7 @@ export const MenuWrapper = ({ children, side }: IMenuWrapperProps) => {
             className="hamburger"
             icon={active ? faCheck : faSearch}
             size={"2x"}
+            onClick={handleClick}
           />
         )}
         {children}
