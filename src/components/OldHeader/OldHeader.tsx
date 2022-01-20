@@ -12,7 +12,7 @@ export const OldHeader = observer(({ loadData }: { loadData: Function }) => {
   const handleUpgrade = async () => {
     if (loggedUser.user) {
       historicalBoulders.currentBoulder.addAscent(loggedUser.user);
-      await saveBoulder(historicalBoulders.currentBoulder, appError);
+      await saveBoulder(historicalBoulders.currentBoulder, appError, loggedUser);
       loadData();
     } else {
       alert("not logged in");

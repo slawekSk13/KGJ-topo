@@ -1,9 +1,7 @@
 import "./Button.css";
 import { EButtonTypes, IButtonType } from "./ButtonTypes";
 
-import { ReactElement } from "react";
-
-import { useContext } from "react";
+import { useContext, ReactElement } from "react";
 import { StateContext } from "../../state/context";
 
 import { HoldState } from "../../state/HoldState";
@@ -12,7 +10,7 @@ import { EHoldTypes } from "../Hold/HoldTypes";
 import { resetNewBoulder, saveBoulder } from "../../utilities/helpers";
 
 export const Button = observer(({ name, label }: IButtonType): ReactElement => {
-  const { boulder, currentHold, appError } = useContext(StateContext);
+  const { boulder, currentHold, appError, loggedUser } = useContext(StateContext);
 
   const handleButtonClick = async (name: EButtonTypes | EHoldTypes) => {
     switch (name) {
@@ -20,7 +18,7 @@ export const Button = observer(({ name, label }: IButtonType): ReactElement => {
         resetNewBoulder(boulder, currentHold, appError);
         break;
       case EButtonTypes.SAVE:
-        const saveStatus = await saveBoulder(boulder, appError);
+        const saveStatus = await saveBoulder(boulder, appError, loggedUser);
         saveStatus.error || resetNewBoulder(boulder, currentHold, appError);
         break;
       default:

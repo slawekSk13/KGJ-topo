@@ -6,6 +6,7 @@ import { HoldState } from "../state/HoldState";
 import { AppError } from "../state/AppError";
 import { IValidateBoulderReturn } from "../components/Button/ButtonTypes";
 import { postToFirebase } from "./firebase/firebaseDB";
+import { LoggedUser } from "../state/LoggedUser";
 
 export const changeLocation = (newLocation?: string): void => {
   const adress = newLocation ? newLocation : "";
@@ -86,19 +87,31 @@ export const validateBoulder = (boulder: Boulder): IValidateBoulderReturn => {
   return { nameNotValid, holdsNotValid };
 };
 
-export const saveBoulder = async (boulder: Boulder, appError: AppError) => {
-  const { nameNotValid, holdsNotValid } = validateBoulder(boulder);
-  if (nameNotValid) {
-    appError.setCode("noname");
+export const saveBoulder = async (
+  boulder: Boulder,
+  appError: AppError,
+  loggedUser: LoggedUser
+) => {
+  try {
+    if (loggedUser.user) {
+      const { nameNotValid, holdsNotValid } = validateBoulder(boulder);
+      if (nameNotValid) {
+        appError.setCode("noname");
+      }
+      if (holdsNotValid) {
+        appError.setCode("holds");
+      } else {
+        const saveStatus = await postToFirebase(boulder, EDataTypes.BOULDERS);
+        console.log(saveStatus);
+        saveStatus.error && appError.setCode(saveStatus.code);
+        return saveStatus;
+      }
+    } else {
+      changeLocation("login");
+    }
+    return { error: true };
+  } catch (err) {
+    console.log(err);
+    return { error: true };
   }
-  if (holdsNotValid) {
-    appError.setCode("holds");
-  } else {
-    const saveStatus = await postToFirebase(boulder, EDataTypes.BOULDERS);
-    console.log(saveStatus);
-    saveStatus.error && appError.setCode(saveStatus.code);
-    return saveStatus;
-    //przejście do logowania dla niezalogowanych
-  }
-  return { error: true };
 };

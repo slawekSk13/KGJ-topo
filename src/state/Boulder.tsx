@@ -38,7 +38,7 @@ export class Boulder {
     this.grade = 0;
     this.type = EBoulderType.BOULDER;
     this.doneBy = [];
-    this.mapUid = "20211017_210955";
+    this.mapUid = "20220117_210955";
   }
   setId(id?: number) {
     this.uid = id ? id : new Date().valueOf();

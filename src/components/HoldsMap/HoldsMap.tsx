@@ -10,10 +10,10 @@ import { StateContext } from "../../state/context";
 
 export const HoldsMap = observer(
   ({ boulder, handleMapClick }: IHoldsMapProps) => {
-    const { maps } = useContext(StateContext);
+    const { maps, currentHold } = useContext(StateContext);
     return maps.getMaps().length > 0 ? (
       <svg
-        className={handleMapClick ? "holds-map clickable" : "holds-map"}
+        className={handleMapClick ? `holds-map holds-map-${currentHold.getHold()}` : "holds-map"}
         viewBox={`0 0 ${maps.getMap(boulder.getMap()).sizeX} ${
           maps.getMap(boulder.getMap()).sizeY
         }`}
