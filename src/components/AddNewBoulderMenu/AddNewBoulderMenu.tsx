@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { StateContext } from "../../state/context";
 import { Input } from "../Input/Input";
 import { IChange, EInputTypes } from "../Input/InputTypes";
+import { MapInput } from "../MapInput/MapInput";
 import { MenuWrapper } from "../MenuWrapper/MenuWrapper";
 import { ESide } from "../MenuWrapper/MenuWrapperTypes";
 import { Switch } from "../Switch/Switch";
@@ -10,18 +11,21 @@ import { TooltipText } from "../TooltipText/TooltipText";
 
 export const AddNewBoulderMenu = observer(() => {
   const { boulder, appError } = useContext(StateContext);
-  const handleChange = (e: IChange): void => {
+  const handleNameInputChange = (e: IChange): void => {
     const { value } = e.target;
     boulder.setName(value);
   };
   const handleSwitchChange = () => {
     boulder.switchType();
   };
+  const handleMapInputChange = (uid: string) => {
+    boulder.setMap(uid);
+  };
   return (
     <MenuWrapper side={ESide.RIGHT}>
       <div>
         <Input
-          onChange={handleChange}
+          onChange={handleNameInputChange}
           value={boulder.getName()}
           placeholder="nazwa"
           type={EInputTypes.TEXT}
@@ -40,6 +44,7 @@ export const AddNewBoulderMenu = observer(() => {
           firstValue="Boulder"
           secondValue="Obwód"
         />
+        <MapInput onChange={handleMapInputChange} />
       </div>
     </MenuWrapper>
   );
