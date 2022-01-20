@@ -5,7 +5,7 @@ import { useContext, useState } from "react";
 import { StateContext } from "../../state/context";
 import { IMapInputProps } from "./MapInputTypes";
 
-export const MapInput = ({ onChange }: IMapInputProps) => {
+export const MapInput = ({ onChange, currentMaps }: IMapInputProps) => {
   const { maps } = useContext(StateContext);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const handleClick = () => {
@@ -28,7 +28,11 @@ export const MapInput = ({ onChange }: IMapInputProps) => {
             .map((el) => (
               <img
                 key={el.uid}
-                className="map-mini clickable"
+                className={
+                  currentMaps.some(element => element=== el.uid) 
+                    ? "map-mini clickable map-mini-selected"
+                    : "map-mini clickable"
+                }
                 src={el.url}
                 onClick={() => onChange(el.uid)}
               />

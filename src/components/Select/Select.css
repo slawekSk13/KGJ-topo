@@ -1,0 +1,16 @@
+.select-wrapper {
+    width: 300px;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.select {
+    /* width: 200px; */
+    font-size: 1.1rem;
+    color: var(--fontColorMenu);
+    background-color: transparent;
+    border: none;
+    margin-left: 1rem;
+}

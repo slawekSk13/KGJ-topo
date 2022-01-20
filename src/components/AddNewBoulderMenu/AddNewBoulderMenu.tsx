@@ -6,11 +6,12 @@ import { IChange, EInputTypes } from "../Input/InputTypes";
 import { MapInput } from "../MapInput/MapInput";
 import { MenuWrapper } from "../MenuWrapper/MenuWrapper";
 import { ESide } from "../MenuWrapper/MenuWrapperTypes";
+import { Select } from "../Select/Select";
 import { Switch } from "../Switch/Switch";
 import { TooltipText } from "../TooltipText/TooltipText";
 
 export const AddNewBoulderMenu = observer(() => {
-  const { boulder, appError } = useContext(StateContext);
+  const { boulder, appError, allUsers } = useContext(StateContext);
   const handleNameInputChange = (e: IChange): void => {
     const { value } = e.target;
     boulder.setName(value);
@@ -20,6 +21,9 @@ export const AddNewBoulderMenu = observer(() => {
   };
   const handleMapInputChange = (uid: string) => {
     boulder.setMap(uid);
+  };
+  const handleAuthorInputChange = (uid: string) => {
+    boulder.setAuthor(uid);
   };
   return (
     <MenuWrapper side={ESide.RIGHT}>
@@ -44,7 +48,8 @@ export const AddNewBoulderMenu = observer(() => {
           firstValue="Boulder"
           secondValue="Obwód"
         />
-        <MapInput onChange={handleMapInputChange} />
+        <MapInput onChange={handleMapInputChange} currentMaps={[boulder.getMap()]}/>
+        <Select onChange={handleAuthorInputChange} label='Autor' options={allUsers.getUsers()} value={boulder.getAuthor()}/>
       </div>
     </MenuWrapper>
   );

@@ -6,14 +6,16 @@
   font-size: 1.1rem;
 }
 .map-input {
+  position: absolute;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   width: 300px;
   min-height: 150px;
   transform: scaleY(0);
-  transition: transform 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
   transform-origin: top;
+  z-index: 5;
 }
 
 .map-input-open {
@@ -31,4 +33,8 @@
 .map-mini {
   width: 100%;
   margin-bottom: .5rem;
+}
+
+.map-mini-selected {
+  border: 3px dashed var(--activeLinkBackgroundColor)
 }

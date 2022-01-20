@@ -6,8 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
   faCheck,
-  faSearch,
   faTimes,
+  faCog
 } from "@fortawesome/free-solid-svg-icons";
 
 export const MenuWrapper = ({ children, side }: IMenuWrapperProps) => {
@@ -55,7 +55,7 @@ export const MenuWrapper = ({ children, side }: IMenuWrapperProps) => {
         ) : (
           <FontAwesomeIcon
             className="hamburger"
-            icon={active ? faCheck : faSearch}
+            icon={active ? faCheck : faCog}
             size={"2x"}
             onClick={handleClick}
           />

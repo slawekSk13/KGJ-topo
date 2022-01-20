@@ -2,7 +2,6 @@ import "./AddNewBoulder.css";
 import { IClick } from "./AddNewBoulderTypes";
 import { ReactElement, useContext } from "react";
 import { handleNewHold } from "../../utilities/helpers";
-
 import { StateContext } from "../../state/context";
 import { HoldsMap } from "../HoldsMap/HoldsMap";
 import { observer } from "mobx-react-lite";
