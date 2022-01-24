@@ -5,7 +5,6 @@ import { handleNewHold } from "../../utilities/helpers";
 import { StateContext } from "../../state/context";
 import { HoldsMap } from "../HoldsMap/HoldsMap";
 import { observer } from "mobx-react-lite";
-import { AddNewBoulderMenu } from "../AddNewBoulderMenu/AddNewBoulderMenu";
 
 export const AddNewBoulder = observer((): ReactElement => {
   const { boulder, currentHold, maps } = useContext(StateContext);
@@ -24,7 +23,6 @@ export const AddNewBoulder = observer((): ReactElement => {
   return (
     <>
       <HoldsMap boulder={boulder} handleMapClick={handleMapClick} />
-      <AddNewBoulderMenu />
     </>
   );
 });

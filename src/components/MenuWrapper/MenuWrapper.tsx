@@ -7,7 +7,7 @@ import {
   faBars,
   faCheck,
   faTimes,
-  faCog
+  faCog,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const MenuWrapper = ({ children, side }: IMenuWrapperProps) => {
@@ -29,14 +29,13 @@ export const MenuWrapper = ({ children, side }: IMenuWrapperProps) => {
 
   useEffect(() => {
     handleHeight();
+    window.addEventListener("resize", handleHeight);
+    document.addEventListener("keydown", escapeListener);
     return () => {
       window.removeEventListener("resize", handleHeight);
       document.removeEventListener("keydown", escapeListener);
     };
   }, [active]);
-
-  window.addEventListener("resize", handleHeight);
-  document.addEventListener("keydown", escapeListener);
   return (
     <>
       <nav

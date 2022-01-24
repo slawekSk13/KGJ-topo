@@ -2,22 +2,41 @@ import { observer } from "mobx-react-lite";
 import { useContext, useEffect, useState } from "react";
 import { StateContext } from "../../state/context";
 import "./InfoModal.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { AppError } from "../../state/AppError";
 
 export const InfoModal = observer(() => {
   const { appError } = useContext(StateContext);
   const [isActive, setIsActive] = useState(true);
   const [isOut, setIsOut] = useState(false);
-  const getMessage = (codeArray: string[]) => {
-    if (codeArray.some((el) => el === "holds")) {
+  const getMessage = (appError: AppError) => {
+    if (appError.checkCode('holds')) {
       return "Dodaj chwyty";
+    } else if (appError.checkCode('noname')) {
+        return 'Podaj nazwę'
     }
   };
+
+  let timeoutId:  ReturnType<typeof setTimeout>;
 
   const modalOut = () => {
     setIsActive(false);
     setIsOut(true);
-    setTimeout(() => appError.clearCode(), 1200);
+    timeoutId = setTimeout(() => appError.clearCode(), 1200);
   };
+
+  const escapeListener = (e: KeyboardEvent) => {
+    e.key === "Escape" && modalOut();
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", escapeListener);
+    return () => {
+      document.removeEventListener("keydown", escapeListener);
+      timeoutId && clearTimeout(timeoutId);
+    };
+  });
 
   return (
     <div
@@ -31,7 +50,10 @@ export const InfoModal = observer(() => {
       onClick={modalOut}
     >
       <div className="modal-background">
-        <p className="modal-info">{getMessage(appError.getCode())}</p>
+        <p className="modal-info">
+          {getMessage(appError)}
+          <FontAwesomeIcon className="close" icon={faTimes} />
+        </p>
       </div>
     </div>
   );
