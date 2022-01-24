@@ -11,7 +11,7 @@ import { LoggedUser } from "../state/LoggedUser";
 export const changeLocation = (newLocation?: string): void => {
   const adress = newLocation ? newLocation : "";
   //window.location.href = `/#/${adress}`; // dev
-  window.location.href = `/nora-topo/#/${newLocation}`; //production
+  window.location.href = `/nora-topo/#/${adress}`; //production
 };
 
 export const queryElementParameters = (elementId: string): IElementSize => {

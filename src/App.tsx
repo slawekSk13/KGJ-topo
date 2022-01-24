@@ -12,21 +12,28 @@ import { observer } from "mobx-react-lite";
 import { useContext } from "react";
 import { StateContext } from "./state/context";
 import { ResetPassword } from "./views/ResetPassword";
+import { InfoModal } from "./components/InfoModal/InfoModal";
 
 export const App = observer(() => {
-  const {loading} = useContext(StateContext);
+  const { loading, appError } = useContext(StateContext);
   return (
     <HashRouter>
       <Menu />
+
+      {appError.getCode().length > 0 && <InfoModal />}
       <Main>
-        {loading.getLoading() ? <Loading /> : <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/old" element={<Old />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/loading" element={<Loading />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
-        </Routes> }
+        {loading.getLoading() ? (
+          <Loading />
+        ) : (
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/old" element={<Old />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/loading" element={<Loading />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+          </Routes>
+        )}
       </Main>
     </HashRouter>
   );
