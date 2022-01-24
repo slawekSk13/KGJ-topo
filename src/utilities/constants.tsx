@@ -1,11 +1,11 @@
-import { EButtonTypes, IButtonType } from "../components/Button/ButtonTypes";
 import { EHoldTypes } from "../components/Hold/HoldTypes";
-import { IConst, IFirebaseReturn, IUserReturn } from "./types";
+import { IHoldButton } from "../components/HoldButton/HoldButtonTypes";
+import { IFirebaseReturn, IUserReturn } from "./types";
 
 export const noErrorDataObject: IFirebaseReturn = {data: [], error: false, code: ''}
 export const noErrorUserObject: IUserReturn = {user: null, error: false, code: ''}
 
-export const buttonsArray: IButtonType[] = [
+export const holdSwitchButtons: IHoldButton[] = [
   {
     name: EHoldTypes.START,
     label: "Start"
@@ -21,13 +21,5 @@ export const buttonsArray: IButtonType[] = [
   {
     name: EHoldTypes.FOOT,
     label: "Stopień"
-  },
-  {
-    name: EButtonTypes.RESET,
-    label: "Reset"
-  },
-  {
-    name: EButtonTypes.SAVE,
-    label: "Zapisz"
   }
 ];

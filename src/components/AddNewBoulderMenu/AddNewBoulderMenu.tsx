@@ -1,6 +1,9 @@
+import "./AddNewBoulderMenu.css";
 import { observer } from "mobx-react-lite";
 import { useContext } from "react";
 import { StateContext } from "../../state/context";
+import { Button } from "../Button/Button";
+import { ButtonsGroup } from "../ButtonsGroup/ButtonsGroup";
 import { Input } from "../Input/Input";
 import { IChange, EInputTypes } from "../Input/InputTypes";
 import { MapInput } from "../MapInput/MapInput";
@@ -27,7 +30,7 @@ export const AddNewBoulderMenu = observer(
       boulder.getName() ? handleShowOptions() : appError.setCode("noname");
     };
     return (
-      <div>
+      <div className="new-menu">
         <Input
           onChange={handleNameInputChange}
           value={boulder.getName()}
@@ -50,9 +53,9 @@ export const AddNewBoulderMenu = observer(
           options={allUsers.getUsers()}
           value={boulder.getAuthor()}
         />
-        <button className="button button__login" onClick={handleGoFurther}>
-          Dalej
-        </button>
+        <ButtonsGroup>
+          <Button label="Dalej" handleButtonClick={handleGoFurther} />
+        </ButtonsGroup>
       </div>
     );
   }

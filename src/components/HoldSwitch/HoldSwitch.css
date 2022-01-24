@@ -1,0 +1,7 @@
+.hold-switch {
+    margin: 1rem auto;
+    display: flex;
+    width: calc(100% - 2rem);
+    flex-wrap: wrap;
+    justify-content: center;
+  }

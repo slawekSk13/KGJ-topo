@@ -11,19 +11,21 @@ export const InfoModal = observer(() => {
   const [isActive, setIsActive] = useState(true);
   const [isOut, setIsOut] = useState(false);
   const getMessage = (appError: AppError) => {
-    if (appError.checkCode('holds')) {
-      return "Dodaj chwyty";
-    } else if (appError.checkCode('noname')) {
-        return 'Podaj nazwę'
+    if (appError.checkCode("holds")) {
+      return "1-2 chwyty na start i przynajmniej jeden na top!";
+    } else if (appError.checkCode("noname")) {
+      return "Podaj nazwę";
     }
   };
 
-  let timeoutId:  ReturnType<typeof setTimeout>;
+  // let timeoutId: ReturnType<typeof setTimeout>;
 
   const modalOut = () => {
     setIsActive(false);
     setIsOut(true);
-    timeoutId = setTimeout(() => appError.clearCode(), 1200);
+    setTimeout(() => {
+      appError.clearCode();
+    }, 1200);
   };
 
   const escapeListener = (e: KeyboardEvent) => {
@@ -34,7 +36,7 @@ export const InfoModal = observer(() => {
     document.addEventListener("keydown", escapeListener);
     return () => {
       document.removeEventListener("keydown", escapeListener);
-      timeoutId && clearTimeout(timeoutId);
+      // timeoutId && clearTimeout(timeoutId);
     };
   });
 
@@ -47,12 +49,12 @@ export const InfoModal = observer(() => {
           ? "modal modal__active out"
           : "modal"
       }
-      onClick={modalOut}
+      onClick={() => modalOut()}
     >
       <div className="modal-background">
         <p className="modal-info">
           {getMessage(appError)}
-          <FontAwesomeIcon className="close" icon={faTimes} />
+          <FontAwesomeIcon className="close clickable" icon={faTimes} />
         </p>
       </div>
     </div>
