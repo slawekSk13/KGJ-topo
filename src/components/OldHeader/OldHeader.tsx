@@ -4,21 +4,25 @@ import { StateContext } from "../../state/context";
 import { observer } from "mobx-react-lite";
 import { TooltipText } from "../TooltipText/TooltipText";
 import { saveBoulder } from "../../utilities/helpers";
-import * as mobx from "mobx";
 
 export const OldHeader = observer(({ loadData }: { loadData: Function }) => {
-  const { historicalBoulders, loggedUser, allUsers, appError } =
+  const { historicalBoulders, loggedUser, allUsers, appMessage } =
     useContext(StateContext);
   const handleUpgrade = async () => {
     if (loggedUser.user) {
       historicalBoulders.currentBoulder.addAscent(loggedUser.user);
-      await saveBoulder(historicalBoulders.currentBoulder, appError, loggedUser);
+      await saveBoulder(
+        historicalBoulders.currentBoulder,
+        appMessage,
+        loggedUser
+      );
+      appMessage.setCode("boulder-done");
       loadData();
     } else {
       alert("not logged in");
     }
   };
-  
+
   return (
     <>
       <h1 className="boulder-name">
@@ -54,10 +58,18 @@ export const OldHeader = observer(({ loadData }: { loadData: Function }) => {
           {" "}
           {">>"}
         </span>
-      </h1>{" "}<button className={loggedUser.user &&
-        !historicalBoulders.currentBoulder.checkAscents(loggedUser.user) ? 'button button__login' : 'invisible button button__login'} onClick={handleUpgrade}>
-            Zrobiłem
-          </button>
+      </h1>{" "}
+      <button
+        className={
+          loggedUser.user &&
+          !historicalBoulders.currentBoulder.checkAscents(loggedUser.user)
+            ? "button button__login"
+            : "invisible button button__login"
+        }
+        onClick={handleUpgrade}
+      >
+        Zrobiłem
+      </button>
     </>
   );
 });

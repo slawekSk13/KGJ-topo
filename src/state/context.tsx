@@ -1,6 +1,6 @@
 import { createContext } from "react";
 import {
-  appError,
+  appMessage,
   boulder,
   historicalBoulders,
   currentHold,
@@ -14,7 +14,7 @@ export const StateContext = createContext<IStateProps>({
   boulder,
   historicalBoulders,
   currentHold,
-  appError,
+  appMessage,
   loggedUser,
   allUsers,
   loading,

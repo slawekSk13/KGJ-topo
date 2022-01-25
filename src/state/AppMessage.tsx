@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 
-export class AppError {
+export class AppMessage {
     code: string[];
     constructor() {
       this.code = [];

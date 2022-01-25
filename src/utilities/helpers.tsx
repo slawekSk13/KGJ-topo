@@ -3,15 +3,15 @@ import { EHoldTypes, IHold } from "../components/Hold/HoldTypes";
 import { IClick } from "../components/AddNewBoulder/AddNewBoulderTypes";
 import { Boulder } from "../state/Boulder";
 import { HoldState } from "../state/HoldState";
-import { AppError } from "../state/AppError";
+import { AppMessage } from "../state/AppMessage";
 import { IValidateBoulderReturn } from "../components/Button/ButtonTypes";
 import { postToFirebase } from "./firebase/firebaseDB";
 import { LoggedUser } from "../state/LoggedUser";
 
 export const changeLocation = (newLocation?: string): void => {
   const adress = newLocation ? newLocation : "";
-  //window.location.href = `/#/${adress}`; // dev
-  window.location.href = `/nora-topo/#/${adress}`; //production
+  window.location.href = `/#/${adress}`; // dev
+  //window.location.href = `/nora-topo/#/${adress}`; //production
 };
 
 export const queryElementParameters = (elementId: string): IElementSize => {
@@ -67,7 +67,7 @@ export const handleNewHold = (
 export const resetNewBoulder: TResetNewBoulder = (
   boulder: Boulder,
   currentHold: HoldState,
-  appError: AppError
+  appError: AppMessage
 ) => {
   boulder.setHolds([]);
   boulder.setId();
@@ -89,7 +89,7 @@ export const validateBoulder = (boulder: Boulder): IValidateBoulderReturn => {
 
 export const saveBoulder = async (
   boulder: Boulder,
-  appError: AppError,
+  appError: AppMessage,
   loggedUser: LoggedUser
 ) => {
   try {

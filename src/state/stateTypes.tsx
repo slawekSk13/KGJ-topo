@@ -1,5 +1,5 @@
 import { AllUsers } from "./AllUsers";
-import { AppError } from "./AppError";
+import { AppMessage } from "./AppMessage";
 import { HistoricalBoulders } from "./HistoricalBoulders";
 import { HoldState } from "./HoldState";
 import { Loading } from "./Loading";
@@ -18,7 +18,7 @@ export interface IStateProps {
   boulder: Boulder;
   historicalBoulders: HistoricalBoulders;
   currentHold: HoldState;
-  appError: AppError;
+  appMessage: AppMessage;
   loggedUser: LoggedUser;
   allUsers: AllUsers;
   loading: Loading;

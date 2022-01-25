@@ -15,12 +15,12 @@ import { ResetPassword } from "./views/ResetPassword";
 import { InfoModal } from "./components/InfoModal/InfoModal";
 
 export const App = observer(() => {
-  const { loading, appError } = useContext(StateContext);
+  const { loading, appMessage } = useContext(StateContext);
   return (
     <HashRouter>
       <Menu />
 
-      {appError.getCode().length > 0 && <InfoModal />}
+      {appMessage.getCode().length > 0 && <InfoModal />}
       <Main>
         {loading.getLoading() ? (
           <Loading />

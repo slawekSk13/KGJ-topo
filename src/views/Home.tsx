@@ -10,22 +10,29 @@ import { resetNewBoulder, saveBoulder } from "../utilities/helpers";
 import { StateContext } from "../state/context";
 
 export const Home = observer(() => {
-  const { boulder, currentHold, appError, loggedUser } =
+  const { boulder, currentHold, appMessage, loggedUser, loading } =
     useContext(StateContext);
   const [showOptions, setShowOptions] = useState(true);
   const handleShowOptions = () => {
     setShowOptions((prev) => !prev);
   };
   const handleReset = () => {
-    resetNewBoulder(boulder, currentHold, appError);
+    resetNewBoulder(boulder, currentHold, appMessage);
     setShowOptions(true);
   };
   const handleSave = async () => {
+    loading.setLoading();
     try {
-      const saveStatus = await saveBoulder(boulder, appError, loggedUser);
-      saveStatus.error || resetNewBoulder(boulder, currentHold, appError);
+      const saveStatus = await saveBoulder(boulder, appMessage, loggedUser);
+      saveStatus.error || resetNewBoulder(boulder, currentHold, appMessage);
+      saveStatus.error
+        ? appMessage.setCode("boulder-not-added")
+        : appMessage.setCode("boulder-added");
     } catch (err) {
       console.log(err);
+      appMessage.setCode("boulder-not-added");
+    } finally {
+      loading.clearLoading();
     }
   };
   return showOptions ? (

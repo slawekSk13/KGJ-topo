@@ -4,27 +4,18 @@ import { StateContext } from "../../state/context";
 import "./InfoModal.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { AppError } from "../../state/AppError";
+import { getMessage } from "./InfoModalHelpers";
 
 export const InfoModal = observer(() => {
-  const { appError } = useContext(StateContext);
+  const { appMessage } = useContext(StateContext);
   const [isActive, setIsActive] = useState(true);
   const [isOut, setIsOut] = useState(false);
-  const getMessage = (appError: AppError) => {
-    if (appError.checkCode("holds")) {
-      return "1-2 chwyty na start i przynajmniej jeden na top!";
-    } else if (appError.checkCode("noname")) {
-      return "Podaj nazwę";
-    }
-  };
-
-  // let timeoutId: ReturnType<typeof setTimeout>;
 
   const modalOut = () => {
     setIsActive(false);
     setIsOut(true);
     setTimeout(() => {
-      appError.clearCode();
+      appMessage.clearCode();
     }, 1200);
   };
 
@@ -34,9 +25,10 @@ export const InfoModal = observer(() => {
 
   useEffect(() => {
     document.addEventListener("keydown", escapeListener);
+    const timeoutId = setTimeout(modalOut, 5000);
     return () => {
       document.removeEventListener("keydown", escapeListener);
-      // timeoutId && clearTimeout(timeoutId);
+      clearTimeout(timeoutId);
     };
   });
 
@@ -53,7 +45,7 @@ export const InfoModal = observer(() => {
     >
       <div className="modal-background">
         <p className="modal-info">
-          {getMessage(appError)}
+          {getMessage(appMessage)}
           <FontAwesomeIcon className="close clickable" icon={faTimes} />
         </p>
       </div>

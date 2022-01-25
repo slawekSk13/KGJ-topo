@@ -4,7 +4,7 @@ import { App } from "./App";
 import { StateContext } from "./state/context";
 import {
   allUsers,
-  appError,
+  appMessage,
   boulder,
   currentHold,
   historicalBoulders,
@@ -20,7 +20,7 @@ render(
       boulder,
       historicalBoulders,
       currentHold,
-      appError,
+      appMessage,
       loggedUser,
       allUsers,
       loading,

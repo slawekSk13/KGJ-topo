@@ -8,26 +8,27 @@ import { handleLogin } from "../utilities/firebase/firebaseAuth";
 import { getUsersListFromFirebase } from "../utilities/firebase/firebaseDB";
 import { changeLocation } from "../utilities/helpers";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+
 export const Login = observer(() => {
-  const { boulder, loggedUser, appError, loading, allUsers } =
+  const { boulder, loggedUser, appMessage, loading, allUsers } =
     useContext(StateContext);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const handleClick = async (): Promise<void> => {
     loading.setLoading();
     try {
       const loginEffect = await handleLogin({ email, password });
       if (loginEffect.error) {
-        appError.setCode(loginEffect.code);
-        console.log(loginEffect.error);
-        alert("Spróbuj jeszcze raz");
-        // add info for user if login was unsuccesfull
+        appMessage.setCode(loginEffect.code);
       } else if (loginEffect.user) {
         loggedUser.setUser(loginEffect.user);
         boulder.setAuthor(loginEffect.user.uid);
         const usersList = await getUsersListFromFirebase();
         usersList && allUsers.setUsers(usersList.data);
-        changeLocation("old");
+        changeLocation();
       }
     } catch (err) {
       console.log("err");
@@ -35,7 +36,11 @@ export const Login = observer(() => {
       loading.clearLoading();
     }
   };
-  
+
+  const handlePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
+
   const enterListener = (e: KeyboardEvent) => {
     e.key === "Enter" && handleClick();
   };
@@ -52,12 +57,18 @@ export const Login = observer(() => {
         placeholder="e-mail"
       />
       <Input
-        type={EInputTypes.PASSWORD}
+        type={showPassword ? EInputTypes.TEXT : EInputTypes.PASSWORD}
         name="passw"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         placeholder="hasło"
-      />
+      >
+        <FontAwesomeIcon
+          className="clickable password-visibility-toggler"
+          icon={showPassword ? faEyeSlash : faEye}
+          onClick={handlePasswordVisibility}
+        />
+      </Input>
       <button className="button button__login" onClick={handleClick}>
         Zaloguj się
       </button>

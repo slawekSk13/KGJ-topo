@@ -11,6 +11,7 @@ export const Input = ({ onChange, value, type, placeholder, name, children }: II
       placeholder={placeholder}
       name={name}
       className='input clickable'
+      autoFocus
     />
     {children}
     </label>

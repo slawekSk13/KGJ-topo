@@ -1,5 +1,5 @@
 import { AllUsers } from "./AllUsers";
-import { AppError } from "./AppError";
+import { AppMessage } from "./AppMessage";
 import { HistoricalBoulders } from "./HistoricalBoulders";
 import { HoldState } from "./HoldState";
 import { LoggedUser } from "./LoggedUser";
@@ -9,7 +9,7 @@ import { Maps } from "./Maps";
 
 export const boulder = new Boulder();
 export const currentHold = new HoldState();
-export const appError = new AppError();
+export const appMessage = new AppMessage();
 export const loggedUser = new LoggedUser();
 export const historicalBoulders = new HistoricalBoulders();
 export const allUsers = new AllUsers();

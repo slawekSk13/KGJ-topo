@@ -7,15 +7,15 @@ import { handleResetPassword } from "../utilities/firebase/firebaseAuth";
 import { changeLocation } from "../utilities/helpers";
 
 export const ResetPassword = observer(() => {
-  const { appError } = useContext(StateContext);
+  const { appMessage } = useContext(StateContext);
   const [email, setEmail] = useState<string>("");
   const handleClick = async () => {
     try {
       const response = await handleResetPassword(email);
       if (response.error) {
-        appError.setCode(response.code);
+        appMessage.setCode(response.code);
       } else {
-          appError.clearCode();
+        appMessage.clearCode();
         changeLocation("login");
       }
     } catch (err) {
@@ -24,9 +24,9 @@ export const ResetPassword = observer(() => {
   };
   const isEmailInvalid = () => {
     return (
-      appError.checkCode("auth/user-not-found") ||
-      appError.checkCode("auth/invalid-email") ||
-      appError.checkCode("auth/missing-email")
+      appMessage.checkCode("auth/user-not-found") ||
+      appMessage.checkCode("auth/invalid-email") ||
+      appMessage.checkCode("auth/missing-email")
     );
   };
   return (

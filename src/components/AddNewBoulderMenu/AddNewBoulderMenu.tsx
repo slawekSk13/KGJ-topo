@@ -12,7 +12,7 @@ import { Switch } from "../Switch/Switch";
 
 export const AddNewBoulderMenu = observer(
   ({ handleShowOptions }: { handleShowOptions: VoidFunction }) => {
-    const { boulder, appError, allUsers } = useContext(StateContext);
+    const { boulder, appMessage, allUsers } = useContext(StateContext);
     const handleNameInputChange = (e: IChange): void => {
       const { value } = e.target;
       boulder.setName(value);
@@ -27,7 +27,7 @@ export const AddNewBoulderMenu = observer(
       boulder.setAuthor(uid);
     };
     const handleGoFurther = () => {
-      boulder.getName() ? handleShowOptions() : appError.setCode("noname");
+      boulder.getName() ? handleShowOptions() : appMessage.setCode("noname");
     };
     return (
       <div className="new-menu">

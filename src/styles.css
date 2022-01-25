@@ -22,3 +22,10 @@ body {
 .invisible {
   opacity: 0;
 }
+
+.password-visibility-toggler {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+}

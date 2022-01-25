@@ -7,18 +7,18 @@ import { FilterBar } from "../components/FilterBar/FilterBar";
 import { getBouldersFromFirebase } from "../utilities/firebase/firebaseDB";
 
 export const Old = observer(() => {
-  const { appError, historicalBoulders} = useContext(StateContext);
+  const { appMessage, historicalBoulders} = useContext(StateContext);
 
   const loadData = async () => {
     try {
       const { code, data, error } = await getBouldersFromFirebase();
       historicalBoulders.setBoulders(data);
-      appError.removeCode("connection");
-      error && appError.setCode(code);
+      appMessage.removeCode("connection");
+      error && appMessage.setCode(code);
       return data;
     } catch (error) {
       console.log(error);
-      appError.setCode("connection");
+      appMessage.setCode("connection");
     }
   };
 
@@ -28,7 +28,7 @@ export const Old = observer(() => {
 
   return (
     <>
-      {appError.checkCode("connection") ? (
+      {appMessage.checkCode("connection") ? (
         <div>Nie ma internetów</div>
       ) : (
         <>
