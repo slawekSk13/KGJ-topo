@@ -1,9 +1,11 @@
 import "./OldHeader.css";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { StateContext } from "../../state/context";
 import { observer } from "mobx-react-lite";
 import { TooltipText } from "../TooltipText/TooltipText";
 import { saveBoulder } from "../../utilities/helpers";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 
 export const OldHeader = observer(({ loadData }: { loadData: Function }) => {
   const { historicalBoulders, loggedUser, allUsers, appMessage } =
@@ -19,21 +21,38 @@ export const OldHeader = observer(({ loadData }: { loadData: Function }) => {
       appMessage.setCode("boulder-done");
       loadData();
     } else {
-      alert("not logged in");
+      appMessage.setCode("not-logged");
     }
   };
+
+  const handleKeyboardEvent = (e: KeyboardEvent) => {
+    if (e.key === "ArrowLeft" || e.key === "ArrowDown") {
+      historicalBoulders.decreaseCount();
+    } else if (e.key === "ArrowRight" || e.key === "ArrowUp") {
+      historicalBoulders.increaseCount();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyboardEvent);
+    return () => {
+      window.removeEventListener("keydown", handleKeyboardEvent);
+    };
+  });
 
   return (
     <>
       <h1 className="boulder-name">
-        <span
+        <FontAwesomeIcon
           className="clickable"
+          icon={faCaretLeft}
           onClick={() => historicalBoulders.decreaseCount()}
-        >
-          {"<<"}{" "}
-        </span>
-        <span className="tooltip">
-          {`${historicalBoulders.currentBoulder.getName()} - ${historicalBoulders.currentBoulder.getGrade()}`}
+          size={"2x"}
+        />
+
+        <span className="tooltip title">
+          {historicalBoulders.currentBoulder.getName()}
+          <br /> {historicalBoulders.currentBoulder.getGrade()}
           {historicalBoulders.currentBoulder.getAuthor() && (
             <TooltipText
               className={`tooltip-text__bottom`}
@@ -51,13 +70,12 @@ export const OldHeader = observer(({ loadData }: { loadData: Function }) => {
             />
           )}
         </span>
-        <span
+        <FontAwesomeIcon
           className="clickable"
+          icon={faCaretRight}
           onClick={() => historicalBoulders.increaseCount()}
-        >
-          {" "}
-          {">>"}
-        </span>
+          size={"2x"}
+        />
       </h1>{" "}
       <button
         className={
